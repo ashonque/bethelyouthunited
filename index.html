@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Bethel Youth United - A vibrant youth community under B.I.P.C. Germany, led by Brother Sharon Shaju. Join us for worship, fellowship, and spiritual growth.">
+    <meta name="theme-color" content="#5a9367">
+    <title>Bethel Youth United | The Lord Himself Goes Before You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #5a9367;
+            --secondary-color: #f39c12;
+            --dark-bg: #0a0a0a;
+            --light-text: #ffffff;
+            --gray-text: #b0b0b0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* News Ticker */
+        .news-ticker {
+            background: linear-gradient(90deg, var(--primary-green), #4a7d56);
+            color: white;
+            padding: 0.8rem 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+            border-bottom: 3px solid var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+        }
+
+        .ticker-label {
+            background: var(--secondary-color);
+            padding: 0.5rem 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .ticker-content {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0 3rem;
+        }
+
+        .ticker-content strong {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .news-ticker:hover .ticker-wrapper {
+            animation-play-state: paused;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 52px;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-text);
+        }
+
+        .nav-links a.active {
+            color: var(--light-text);
+        }
+
+        .contact-btn {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(90, 147, 103, 0.4);
+            border: 2px solid var(--primary-green);
+        }
+
+        .contact-btn:hover {
+            background: white;
+            color: var(--primary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 147, 103, 0.6);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 3rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-content .verse {
+            color: var(--gray-text);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-top: 2rem;
+        }
+
+        .hero-logo {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInRight 1s ease;
+        }
+
+        .logo-circle {
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotate 30s linear infinite;
+        }
+
+        .logo-circle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary-green);
+            animation: rotate 3s linear infinite;
+        }
+
+        .logo-content {
+            text-align: center;
+            animation: rotateReverse 30s linear infinite;
+        }
+
+        .cross-logo {
+            font-size: 8rem;
+            font-weight: 900;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .cross-logo::before {
+            content: '✝';
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6rem;
+            opacity: 0.3;
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+        }
+
+        .logo-subtext {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: #4a7d56;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(90, 147, 103, 0.3);
+        }
+
+        /* Image Carousel Section */
+        .carousel-section {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+            z-index: 1;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(135deg, rgba(90, 147, 103, 0.3), rgba(44, 90, 160, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-image.has-image {
+            background: none;
+            font-size: 0;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4rem 3rem;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .carousel-caption-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .carousel-caption h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .carousel-caption p {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            max-width: 700px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            z-index: 3;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--primary-green);
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: var(--primary-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 8rem 3rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .location-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .location-info h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(90, 147, 103, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .detail-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .detail-text p {
+            color: var(--gray-text);
+        }
+
+        .map-placeholder {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.3;
+            overflow: hidden;
+        }
+
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+        }
+
+        .map-placeholder.has-image {
+            background: none;
+            font-size: 0;
+            opacity: 1;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(90, 147, 103, 0.2), rgba(90, 147, 103, 0.05));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item.has-image {
+            background: none;
+            font-size: 0;
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            border-color: var(--primary-green);
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+        /* Events Section */
+        .events {
+            padding: 8rem 3rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .events-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(90, 147, 103, 0.3);
+        }
+
+        .event-image {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(90, 147, 103, 0.3), rgba(90, 147, 103, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .event-content {
+            padding: 2rem;
+        }
+
+        .event-date {
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .event-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .event-content p {
+            color: var(--gray-text);
+            line-height: 1.8;
+        }
+
+        /* News Section */
+        .news {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .news-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(90, 147, 103, 0.3);
+        }
+
+        .news-image {
+            background: linear-gradient(135deg, rgba(90, 147, 103, 0.2), rgba(90, 147, 103, 0.05));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .news-date {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-content p {
+            color: var(--gray-text);
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 8rem 3rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(90, 147, 103, 0.3), rgba(90, 147, 103, 0.1));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .team-role {
+            color: var(--primary-green);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-description {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray-text);
+        }
+
+        .submit-btn {
+            padding: 1.2rem 2.5rem;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #4a7d56;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4rem 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-about p {
+            color: var(--gray-text);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--gray-text);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        
+        /* Extra Large Screens */
+        @media (min-width: 1920px) {
+            .nav-container,
+            .hero,
+            .mission,
+            .location-content,
+            .events-container,
+            .news,
+            .team-container,
+            .contact {
+                max-width: 1600px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (max-width: 1400px) {
+            .nav-container {
+                padding: 0 2rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Tablet Landscape */
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 5rem 2rem 2rem;
+            }
+
+            .hero-content {
+                max-width: 500px;
+            }
+
+            .logo-circle {
+                width: 400px;
+                height: 400px;
+            }
+
+            .cross-logo {
+                font-size: 6rem;
+            }
+
+            .events-grid,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .news-grid {
+                gap: 2rem;
+            }
+
+            .about-content > div {
+                padding: 2rem !important;
+                font-size: 1.1rem !important;
+            }
+        }
+
+        /* Tablet Portrait */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 132px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                width: 100%;
+                padding: 2rem;
+                transition: 0.3s;
+                gap: 1.5rem;
+                max-height: calc(100vh - 132px);
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 7rem 1.5rem 2rem;
+                min-height: auto;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-content .verse {
+                font-size: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .logo-circle {
+                width: 300px;
+                height: 300px;
+                margin-top: 2rem;
+            }
+
+            .cross-logo {
+                font-size: 5rem;
+            }
+
+            .logo-text {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+
+            .logo-subtext {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            /* Carousel Mobile */
+            .carousel-section {
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .carousel-caption {
+                padding: 1.5rem 1rem;
+            }
+
+            .carousel-caption h3 {
+                font-size: 1.5rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.95rem;
+            }
+
+            .carousel-controls {
+                bottom: 1rem;
+                right: 1rem;
+                gap: 0.5rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-indicators {
+                bottom: 1rem;
+                gap: 0.5rem;
+            }
+
+            .indicator {
+                width: 10px;
+                height: 10px;
+            }
+
+            .indicator.active {
+                width: 30px;
+            }
+
+            .carousel-image {
+                font-size: 3rem;
+            }
+
+            /* Sections */
+            .mission,
+            .location,
+            .gallery,
+            .events,
+            .news,
+            .team,
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            /* About Us Mobile */
+            .about-content > div {
+                padding: 1.5rem !important;
+                font-size: 1rem !important;
+                line-height: 1.8 !important;
+            }
+
+            /* Events Grid */
+            .events-grid,
+            .team-grid,
+            .news-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .event-image {
+                height: 200px;
+            }
+
+            .event-content {
+                padding: 1.5rem;
+            }
+
+            /* Location */
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .location-info h2 {
+                font-size: 2rem;
+            }
+
+            .map-placeholder {
+                height: 300px;
+            }
+
+            /* Contact */
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* News Cards */
+            .news-card {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .news-image {
+                height: 150px;
+                font-size: 2.5rem;
+            }
+
+            /* Footer */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* News Ticker Mobile */
+            .ticker-label {
+                font-size: 0.8rem;
+                padding: 0.4rem 1.2rem;
+            }
+
+            .ticker-content {
+                font-size: 0.95rem;
+            }
+
+            .ticker-content strong {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Small Mobile Phones */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero-content .verse {
+                font-size: 0.9rem;
+            }
+
+            .logo-circle {
+                width: 250px;
+                height: 250px;
+            }
+
+            .cross-logo {
+                font-size: 4rem;
+            }
+
+            .cross-logo::before {
+                font-size: 4rem;
+                top: -1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .logo-subtext {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
+            .carousel-section {
+                height: 40vh;
+                min-height: 300px;
+            }
+
+            .carousel-caption {
+                padding: 1rem;
+            }
+
+            .carousel-caption h3 {
+                font-size: 1.2rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-tag {
+                font-size: 0.8rem;
+            }
+
+            .about-content > div {
+                padding: 1.2rem !important;
+                font-size: 0.95rem !important;
+            }
+
+            .detail-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .team-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+
+            .contact-btn {
+                font-size: 1rem;
+                padding: 0.9rem 2rem;
+            }
+
+            .event-image {
+                height: 150px;
+            }
+
+            .event-image div {
+                font-size: 3.5rem !important;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-links {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Extra Small Devices */
+        @media (max-width: 360px) {
+            .hero-content h1 {
+                font-size: 1.1rem;
+            }
+
+            .logo-circle {
+                width: 220px;
+                height: 220px;
+            }
+
+            .cross-logo {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .about-content > div {
+                font-size: 0.9rem !important;
+                padding: 1rem !important;
+            }
+
+            .carousel-caption h3 {
+                font-size: 1.1rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Landscape Mode for Mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 6rem 2rem 2rem;
+            }
+
+            .logo-circle {
+                width: 200px;
+                height: 200px;
+            }
+
+            .cross-logo {
+                font-size: 3rem;
+            }
+
+            .carousel-section {
+                height: 80vh;
+            }
+        }
+
+        /* Improved touch targets for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a,
+            .carousel-btn,
+            .indicator,
+            .cta-button,
+            .contact-btn,
+            .submit-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .carousel-btn {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-wrapper">
+            <span class="ticker-label">📢 LATEST NEWS</span>
+            <span class="ticker-content">
+                <strong>THIRD CONFERENCE</strong> happening on May 8, 9, and 10, 2026! 
+                Three days of powerful worship, teaching, and transformation. 
+                Don't miss this life-changing event! 
+                Register now and be part of this glorious gathering! 🙏
+            </span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Bethel Youth United</a>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#mission">About</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact" class="contact-btn">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.</h1>
+            <p class="verse">Deuteronomy 31:8</p>
+            <a href="#mission" class="cta-button">Learn More</a>
+        </div>
+        <div class="hero-logo">
+            <div class="logo-circle">
+                <div class="logo-content">
+                    <div class="cross-logo">BETHEL</div>
+                    <div class="logo-subtext">YOUTH UNITED</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active" data-slide="0">
+                <div class="carousel-image">
+                    <!-- TO ADD IMAGE: <img src="images/slide1.jpg" alt="Worship and Praise"> -->
+                    🎵
+                </div>
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content">
+                        <h3>Worship & Praise</h3>
+                        <p>Experience powerful worship that brings you closer to God. Every Friday night, we gather to lift our voices in praise and encounter His presence.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide" data-slide="1">
+                <div class="carousel-image">
+                    <!-- TO ADD IMAGE: <img src="images/slide2.jpg" alt="Community and Fellowship"> -->
+                    🙏
+                </div>
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content">
+                        <h3>Community & Fellowship</h3>
+                        <p>Build lasting friendships and grow together in faith. Our youth community is a place where you truly belong and are loved for who you are.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide" data-slide="2">
+                <div class="carousel-image">
+                    <!-- TO ADD IMAGE: <img src="images/slide3.jpg" alt="Retreats and Adventures"> -->
+                    ⛺
+                </div>
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content">
+                        <h3>Retreats & Adventures</h3>
+                        <p>Create unforgettable memories at our annual retreats. Experience God in nature, deepen your faith, and build bonds that last a lifetime.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide" data-slide="3">
+                <div class="carousel-image">
+                    <!-- TO ADD IMAGE: <img src="images/slide4.jpg" alt="Serving Together"> -->
+                    🤝
+                </div>
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content">
+                        <h3>Serving Together</h3>
+                        <p>Make a difference in our community. Through service projects and outreach, we put our faith into action and show God's love to those around us.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide" data-slide="4">
+                <div class="carousel-image">
+                    <!-- TO ADD IMAGE: <img src="images/slide5.jpg" alt="Growing in Faith"> -->
+                    📖
+                </div>
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content">
+                        <h3>Growing in Faith</h3>
+                        <p>Dive deep into God's Word through engaging teaching and interactive Bible studies. Discover truth that transforms your life from the inside out.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn prev-btn" aria-label="Previous slide">‹</button>
+                <button class="carousel-btn next-btn" aria-label="Next slide">›</button>
+            </div>
+
+            <div class="carousel-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="section-header fade-in">
+            <div class="section-tag">Who We Are</div>
+            <h2 class="section-title">About Us</h2>
+        </div>
+
+        <div class="about-content" style="max-width: 1200px; margin: 3rem auto; text-align: left;">
+            <div style="background: linear-gradient(135deg, rgba(90, 147, 103, 0.1), rgba(44, 90, 160, 0.05)); padding: 3rem; border-radius: 12px; border: 1px solid rgba(90, 147, 103, 0.2); line-height: 2; color: rgba(255,255,255,0.9); box-shadow: 0 10px 40px rgba(0,0,0,0.3); font-size: 1.2rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+                <p style="margin-bottom: 1.5rem;">
+                    <strong style="color: var(--primary-green);">Bethel Youth United (BYU)</strong>, under the Bethel International Pentecostal Church (B.I.P.C.), Germany, is led by <strong style="color: var(--primary-green);">Brother Sharon Shaju</strong>.
+                </p>
+                
+                <p style="margin-bottom: 1.5rem;">
+                    At Bethel Youth United, we are passionate about <strong style="color: var(--primary-green);">loving God and loving people</strong>, because love is the most important foundation of the Christian faith. Jesus said, <em>"Love the Lord your God with all your heart and with all your soul and with all your mind. This is the first and greatest commandment. And the second is like it: Love your neighbor as yourself."</em> (Matthew 22:37-39)
+                </p>
+                
+                <p style="margin-bottom: 1.5rem;">
+                    What began in <strong>2022</strong> as simple Zoom meetings has grown powerfully—hosting <strong style="color: var(--primary-green);">two impactful conferences</strong> and uniting young people from diverse backgrounds, nationalities, languages, and ethnicities, all seeking a genuine encounter with God.
+                </p>
+                
+                <p style="margin-bottom: 1.5rem;">
+                    Our worship flows in <strong style="color: var(--primary-green);">multiple languages</strong>: Malayalam, English, Tamil, German, Hindi, and more—reflecting the multicultural heartbeat of our church family.
+                </p>
+                
+                <p style="margin-bottom: 1.5rem; background: rgba(90, 147, 103, 0.1); padding: 1.5rem; border-left: 4px solid var(--primary-green); border-radius: 8px;">
+                    <strong style="color: var(--primary-green);">The revival among our youth is truly miraculous.</strong> Young lives are being transformed—experiencing healing, water baptism in the name of Jesus, and receiving the baptism of the Holy Ghost with the evidence of speaking in tongues. Our meetings are filled with authentic freedom in worship.
+                </p>
+                
+                <p style="margin-bottom: 1.5rem;">
+                    We offer dynamic weekly fellowships, powerful worship sessions, Bible studies, prayer meetings, youth conferences, camps, mentorship, and opportunities to serve and grow in leadership.
+                </p>
+                
+                <p style="margin-bottom: 1.5rem;">
+                    By God's grace, Bethel Youth United extends beyond Germany, connecting with branch churches in <strong style="color: var(--primary-green);">Germany, Sweden, Lithuania, and across Europe</strong>.
+                </p>
+                
+                <p style="margin-bottom: 1.5rem; font-weight: 700; color: var(--primary-green); text-align: center; padding: 1rem; background: rgba(90, 147, 103, 0.15); border-radius: 8px;">
+                    "You will feel a move of God, and it's a family!"
+                </p>
+                
+                <p style="margin-bottom: 0; text-align: center;">
+                    We warmly invite you—whether you're a teen, young adult, or youth at heart—to come and experience the fresh fire of Pentecost. <strong style="color: var(--primary-green);">Experience His Glory. Enter His Presence. Receive His Love!</strong> 🔥
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <div class="location-content">
+            <div class="location-info fade-in">
+                <h2>Visit Us</h2>
+                <div class="location-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-text">
+                            <h4>Address</h4>
+                            <p>Oberer Hengsbacher Weg 16<br>57080 Siegen<br>Germany</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">📧</div>
+                        <div class="detail-text">
+                            <h4>Email Us</h4>
+                            <p>info@bethelyouthunited.org<br>youth@bethelyouthunited.org</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-placeholder fade-in">
+                <!-- TO ADD MAP IMAGE: <img src="images/location-map.jpg" alt="Church Location"> -->
+                🗺️
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="gallery-grid">
+            <!-- TO ADD CHURCH IMAGES -->
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church1.jpg" alt="Bethel Church"> -->
+                📷
+            </div>
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church2.jpg" alt="Church Interior"> -->
+                📷
+            </div>
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church3.jpg" alt="Worship Service"> -->
+                📷
+            </div>
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church4.jpg" alt="Youth Gathering"> -->
+                📷
+            </div>
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church5.jpg" alt="Church Building"> -->
+                📷
+            </div>
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church6.jpg" alt="Community"> -->
+                📷
+            </div>
+            <div class="gallery-item fade-in">
+                <!-- <img src="images/church7.jpg" alt="Fellowship"> -->
+                📷
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="events-container">
+            <div class="section-header fade-in">
+                <div class="section-tag">🔥 What's Happening</div>
+                <h2 class="section-title">Upcoming Events</h2>
+                <p class="section-description">Mark your calendar and join us for life-changing experiences!</p>
+            </div>
+
+            <div class="events-grid">
+                <div class="event-card fade-in" style="border-top: 4px solid var(--secondary-color);">
+                    <div class="event-image" style="background: linear-gradient(135deg, rgba(243, 156, 18, 0.4), rgba(243, 156, 18, 0.2));">
+                        <div style="font-size: 5rem;">🔥</div>
+                    </div>
+                    <div class="event-content" style="background: linear-gradient(to bottom, rgba(243, 156, 18, 0.05), transparent);">
+                        <div class="event-date" style="background: var(--secondary-color); color: white; display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;">MAY 8-10, 2026</div>
+                        <h3 style="color: var(--secondary-color); font-size: 1.8rem;">Third Conference</h3>
+                        <p style="font-size: 1.05rem; font-weight: 500;">Three powerful days of worship, anointed teaching, and divine encounters! Experience breakthrough, healing, and the fire of Pentecost. This is the gathering you cannot afford to miss!</p>
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(243, 156, 18, 0.1); border-left: 3px solid var(--secondary-color); border-radius: 4px;">
+                            <strong style="color: var(--secondary-color);">Special Speakers | Powerful Worship | Life Transformation</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card fade-in" style="border-top: 4px solid var(--primary-green);">
+                    <div class="event-image" style="background: linear-gradient(135deg, rgba(90, 147, 103, 0.4), rgba(90, 147, 103, 0.2));">
+                        <div style="font-size: 5rem;">💻</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date" style="background: var(--primary-green); color: white; display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;">EVERY FRIDAY • 8:30 PM GERMAN TIME</div>
+                        <h3 style="font-size: 1.6rem;">Weekly Youth Meetings on Zoom</h3>
+                        <p>Join us every Friday for dynamic worship, relevant biblical teaching, and authentic fellowship. Experience God's presence in a powerful way as we gather together as a family.</p>
+                        <a href="https://us06web.zoom.us/j/85421151544?pwd=TjNYd080NitrRWhwOWdwUTN1c2kyQT09" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.8rem 1.5rem; background: #2D8CFF; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(45, 140, 255, 0.3);" onmouseover="this.style.background='#0B5ED7'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(45, 140, 255, 0.5)'" onmouseout="this.style.background='#2D8CFF'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(45, 140, 255, 0.3)'">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M8 10v4l3.5-2L8 10zm6 0v4l3.5-2L14 10z" fill="#2D8CFF"/>
+                            </svg>
+                            Join Zoom Meeting
+                        </a>
+                    </div>
+                </div>
+                <div class="event-card fade-in" style="border-top: 4px solid #e74c3c;">
+                    <div class="event-image" style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.4), rgba(231, 76, 60, 0.2));">
+                        <div style="font-size: 5rem;">🙏</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date" style="background: #e74c3c; color: white; display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;">ONGOING</div>
+                        <h3 style="font-size: 1.6rem;">Prayer & Intercession</h3>
+                        <p>Join our dedicated prayer warriors as we seek God's face together. Powerful prayer meetings, fasting sessions, and intercession for revival across Europe and beyond.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="section-header fade-in">
+            <div class="section-tag">Latest Updates</div>
+            <h2 class="section-title">News & Stories</h2>
+            <p class="section-description">Stay connected with what's happening in our community.</p>
+        </div>
+
+        <div class="news-grid">
+            <div class="news-card fade-in">
+                <div class="news-image">✝️</div>
+                <div class="news-content">
+                    <h3>Winter Retreat Recap: Lives Transformed</h3>
+                    <div class="news-date">January 25, 2026</div>
+                    <p>Over 80 students encountered God in powerful ways during our winter retreat. Read testimonies and see photos from this incredible weekend.</p>
+                </div>
+            </div>
+            <div class="news-card fade-in">
+                <div class="news-image">🎤</div>
+                <div class="news-content">
+                    <h3>New Worship Team Members Announced</h3>
+                    <div class="news-date">January 20, 2026</div>
+                    <p>We're excited to welcome five new talented musicians to our worship team. Come hear them lead worship this Friday night.</p>
+                </div>
+            </div>
+            <div class="news-card fade-in">
+                <div class="news-image">📚</div>
+                <div class="news-content">
+                    <h3>Small Groups Launch Next Month</h3>
+                    <div class="news-date">January 15, 2026</div>
+                    <p>Starting in February, join a small group to dive deeper into God's Word and build meaningful relationships.</p>
+                </div>
+            </div>
+            <div class="news-card fade-in">
+                <div class="news-image">🌍</div>
+                <div class="news-content">
+                    <h3>Summer Mission Trip Registration Open</h3>
+                    <div class="news-date">January 10, 2026</div>
+                    <p>Join us for a life-changing mission trip to Central America this summer. Limited spots available—register today!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="team-container">
+            <div class="section-header fade-in">
+                <div class="section-tag">Leadership</div>
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-description">Passionate leaders dedicated to helping you grow in your faith journey.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h4>Sharon Shaju</h4>
+                    <div class="team-role">Youth Leader</div>
+                    <p class="team-description">Leading with passion and dedication</p>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h4>Praise John</h4>
+                    <div class="team-role">Team Member</div>
+                    <p class="team-description">Serving with joy and commitment</p>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h4>Jeny</h4>
+                    <div class="team-role">Team Member</div>
+                    <p class="team-description">Building community with love</p>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-avatar">👤</div>
+                    <h4>Angel</h4>
+                    <div class="team-role">Team Member</div>
+                    <p class="team-description">Inspiring others through faith</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header fade-in">
+            <div class="section-tag">Get Connected</div>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-description">Have questions? Want to get involved? Reach out to us today.</p>
+        </div>
+
+        <div class="contact-content">
+            <form class="contact-form fade-in" action="https://formsubmit.co/louisashwin0@gmail.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Contact Form Submission - Bethel Youth United">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" style="display:none">
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Your Phone">
+                </div>
+                <div class="form-group">
+                    <textarea rows="6" name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+
+            <div class="contact-info fade-in">
+                <div class="detail-item">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-text">
+                        <h4>Visit Us</h4>
+                        <p>Oberer Hengsbacher Weg 16<br>57080 Siegen, Germany</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">📧</div>
+                    <div class="detail-text">
+                        <h4>Email Us</h4>
+                        <p>info@bethelyouthunited.org<br>youth@bethelyouthunited.org</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">📱</div>
+                    <div class="detail-text">
+                        <h4>Contact Us</h4>
+                        <p><strong>Sharon Shaju</strong><br><a href="tel:+4915752955791" style="color: var(--primary-green); text-decoration: none;">+49 157 52955791</a></p>
+                        <p style="margin-top: 0.8rem;"><strong>Praise Thomas John</strong><br><a href="tel:+491775841763" style="color: var(--primary-green); text-decoration: none;">+49 177 5841763</a></p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Bethel Youth United</h3>
+                <p>Empowering the next generation to live out their faith with passion and purpose. Join us as we grow together in Christ and make an impact on the world.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#mission">About Us</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Sermons</a></li>
+                    <li><a href="#">Bible Studies</a></li>
+                    <li><a href="#">Prayer Requests</a></li>
+                    <li><a href="#">Give</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Small Groups</a></li>
+                    <li><a href="#">Serve</a></li>
+                    <li><a href="#">Mission Trips</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bethel Youth United. All rights reserved. | Empowering Youth • Building Faith • Transforming Lives</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Note: Contact form submission now handled by FormSubmit service
+        // Messages will be automatically sent to louisashwin0@gmail.com
+
+        // Navbar and active navigation
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksAll = document.querySelectorAll('.nav-links a:not(.contact-btn)');
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const isMobile = window.innerWidth <= 768;
+                    const offset = isMobile ? 120 : 130;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const totalSlides = slides.length;
+        let autoPlayInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoPlay();
+            startAutoPlay();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoPlay();
+            startAutoPlay();
+        });
+
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                const slideIndex = parseInt(indicator.getAttribute('data-slide'));
+                showSlide(slideIndex);
+                stopAutoPlay();
+                startAutoPlay();
+            });
+        });
+
+        const carouselSection = document.querySelector('.carousel-section');
+        carouselSection.addEventListener('mouseenter', stopAutoPlay);
+        carouselSection.addEventListener('mouseleave', startAutoPlay);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselSection.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carouselSection.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            }
+        }
+
+        startAutoPlay();
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Close mobile menu on resize to desktop
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                }
+            }, 250);
+        });
+
+        // Prevent zoom on double tap for iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Optimize scroll performance
+        let ticking = false;
+        let lastScrollY = window.pageYOffset;
+
+        window.addEventListener('scroll', () => {
+            lastScrollY = window.pageYOffset;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    // Navbar scroll effect
+                    if (lastScrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+
+                    // Active navigation link on scroll
+                    let current = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (lastScrollY >= (sectionTop - 200)) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinksAll.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').slice(1) === current) {
+                            link.classList.add('active');
+                        }
+                    });
+
+                    // Parallax effect
+                    const hero = document.querySelector('.hero-content');
+                    const heroLogo = document.querySelector('.hero-logo');
+                    
+                    if (hero && heroLogo && lastScrollY < 800) {
+                        hero.style.transform = `translateY(${lastScrollY * 0.3}px)`;
+                        heroLogo.style.transform = `translateY(${lastScrollY * 0.2}px)`;
+                    }
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
