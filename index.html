@@ -274,7 +274,6 @@
             box-shadow: 0 10px 30px rgba(90,147,103,0.3);
         }
 
-        /* ===== CAROUSEL ===== */
         .carousel-section {
             position: relative;
             width: 100%;
@@ -398,7 +397,6 @@
 
         .indicator:hover { background: rgba(255,255,255,0.6); }
 
-        /* ===== MISSION / ABOUT ===== */
         .mission {
             padding: 8rem 3rem;
             max-width: 1400px;
@@ -430,7 +428,6 @@
             margin: 0 auto;
         }
 
-        /* ===== LOCATION ===== */
         .location {
             padding: 8rem 3rem;
             background: rgba(255,255,255,0.02);
@@ -519,6 +516,7 @@
             border: 1px solid rgba(255,255,255,0.05);
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .gallery-item img {
@@ -526,7 +524,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .gallery-item:hover {
@@ -537,6 +535,169 @@
 
         .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+        /* expand icon hint on gallery items */
+        .gallery-item::after {
+            content: '⛶';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(6px);
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease, background 0.35s ease, backdrop-filter 0.35s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+        }
+
+        /* the image wrapper that scales up */
+        .lightbox-img-wrap {
+            position: relative;
+            max-width: 90vw;
+            max-height: 88vh;
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .lightbox-overlay.active .lightbox-img-wrap {
+            transform: scale(1);
+        }
+
+        .lightbox-img-wrap img {
+            display: block;
+            max-width: 100%;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        /* close button */
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 42px;
+            height: 42px;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+            z-index: 2;
+        }
+
+        .lightbox-close:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        /* prev / next arrows */
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+            z-index: 2;
+            user-select: none;
+        }
+
+        .lightbox-arrow:hover {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-arrow.prev { left: -64px; }
+        .lightbox-arrow.next { right: -64px; }
+
+        /* dots at the bottom */
+        .lightbox-dots {
+            position: absolute;
+            bottom: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .lightbox-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .lightbox-dot.active {
+            background: var(--primary-green);
+            transform: scale(1.3);
+        }
+
+        .lightbox-dot:hover {
+            background: rgba(255,255,255,0.6);
+        }
+
+        /* on small screens put arrows inside the image area */
+        @media (max-width: 680px) {
+            .lightbox-arrow.prev { left: 8px; }
+            .lightbox-arrow.next { right: 8px; }
+            .lightbox-arrow { width: 40px; height: 40px; font-size: 1.3rem; }
+        }
 
         /* ===== EVENTS ===== */
         .events {
@@ -587,7 +748,6 @@
             line-height: 1.8;
         }
 
-        /* ===== NEWS ===== */
         .news {
             padding: 8rem 3rem;
             max-width: 1400px;
@@ -643,7 +803,6 @@
             line-height: 1.8;
         }
 
-        /* ===== TEAM ===== */
         .team {
             padding: 8rem 3rem;
             background: rgba(255,255,255,0.02);
@@ -695,7 +854,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== CONTACT ===== */
         .contact {
             padding: 8rem 3rem;
             max-width: 1400px;
@@ -761,7 +919,6 @@
             gap: 2.5rem;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             background: rgba(0,0,0,0.5);
             padding: 4rem 3rem 2rem;
@@ -838,7 +995,6 @@
             color: var(--gray-text);
         }
 
-        /* ===== ANIMATIONS ===== */
         @keyframes fadeInLeft {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
@@ -870,7 +1026,6 @@
             transform: translateY(0);
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (min-width: 1920px) {
             .nav-container, .hero, .mission, .location-content,
             .events-container, .news, .team-container, .contact {
@@ -958,6 +1113,15 @@
             .ticker-label { font-size: 0.8rem; padding: 0.4rem 1.2rem; }
             .ticker-content { font-size: 0.95rem; }
             .ticker-content strong { font-size: 1.1rem; }
+
+            /* lightbox arrows inside on mobile */
+            .lightbox-arrow.prev { left: 8px; }
+            .lightbox-arrow.next { right: 8px; }
+            .lightbox-arrow { width: 40px; height: 40px; font-size: 1.3rem; }
+            .lightbox-close { top: 10px; right: 10px; width: 38px; height: 38px; }
+
+            /* always show expand icon on touch */
+            .gallery-item::after { opacity: 1; }
         }
 
         @media (max-width: 480px) {
@@ -1061,13 +1225,9 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         CAROUSEL — images sit in the SAME folder as index.html
-         so the src is just the filename, e.g. src="main.jpg"
-         ============================================================ -->
+    <!-- Carousel -->
     <section class="carousel-section">
         <div class="carousel-container">
-
             <div class="carousel-slide active" data-slide="0">
                 <img src="fi.JPEG" alt="Worship and Praise">
                 <div class="carousel-caption">
@@ -1077,7 +1237,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="carousel-slide" data-slide="1">
                 <img src="fift.JPEG" alt="Community and Fellowship">
                 <div class="carousel-caption">
@@ -1087,7 +1246,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="carousel-slide" data-slide="2">
                 <img src="lei.jpg" alt="Retreats and Adventures">
                 <div class="carousel-caption">
@@ -1097,7 +1255,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="carousel-slide" data-slide="3">
                 <img src="fo.jpeg" alt="Serving Together">
                 <div class="carousel-caption">
@@ -1107,7 +1264,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="carousel-slide" data-slide="4">
                 <img src="six.jpeg" alt="Growing in Faith">
                 <div class="carousel-caption">
@@ -1117,12 +1273,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="carousel-controls">
                 <button class="carousel-btn prev-btn" aria-label="Previous slide">‹</button>
                 <button class="carousel-btn next-btn" aria-label="Next slide">›</button>
             </div>
-
             <div class="carousel-indicators">
                 <span class="indicator active" data-slide="0"></span>
                 <span class="indicator" data-slide="1"></span>
@@ -1154,9 +1308,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         LOCATION — map image also in root folder
-         ============================================================ -->
+    <!-- Location -->
     <section id="location" class="location">
         <div class="location-content">
             <div class="location-info fade-in">
@@ -1184,24 +1336,33 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         GALLERY — 7 slots filled from the 9 available images
-         ============================================================ -->
+    <!-- Gallery -->
     <section id="gallery" class="gallery">
         <div class="section-header fade-in">
             <div class="section-tag">Our Community</div>
             <h2 class="section-title">Gallery</h2>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item fade-in"><img src="p.jpg"   alt="Bethel Church"></div>
-            <div class="gallery-item fade-in"><img src="main.jpg" alt="Church Fellowship"></div>
-            <div class="gallery-item fade-in"><img src="C.jpg"   alt="Worship Service"></div>
-            <div class="gallery-item fade-in"><img src="se.JPEG"  alt="Youth Gathering"></div>
-            <div class="gallery-item fade-in"><img src="H.jpg"   alt="Community"></div>
-            <div class="gallery-item fade-in"><img src="ber.jpg"  alt="Church Event"></div>
-            <div class="gallery-item fade-in"><img src="we.jpg"    alt="Fellowship"></div>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item fade-in" data-index="0"><img src="p.jpg"    alt="Bethel Church"></div>
+            <div class="gallery-item fade-in" data-index="1"><img src="main.jpg" alt="Church Fellowship"></div>
+            <div class="gallery-item fade-in" data-index="2"><img src="C.jpg"    alt="Worship Service"></div>
+            <div class="gallery-item fade-in" data-index="3"><img src="se.JPEG"  alt="Youth Gathering"></div>
+            <div class="gallery-item fade-in" data-index="4"><img src="H.jpg"    alt="Community"></div>
+            <div class="gallery-item fade-in" data-index="5"><img src="ber.jpg"  alt="Church Event"></div>
+            <div class="gallery-item fade-in" data-index="6"><img src="we.jpg"   alt="Fellowship"></div>
         </div>
     </section>
+
+    <!-- ===== LIGHTBOX MODAL ===== -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-img-wrap">
+            <img src="" alt="Full size" id="lightboxImg">
+            <button class="lightbox-close" id="lightboxClose">✕</button>
+            <button class="lightbox-arrow prev" id="lightboxPrev">‹</button>
+            <button class="lightbox-arrow next" id="lightboxNext">›</button>
+            <div class="lightbox-dots" id="lightboxDots"></div>
+        </div>
+    </div>
 
     <!-- Events -->
     <section id="events" class="events">
@@ -1420,7 +1581,7 @@
     </footer>
 
     <script>
-        // Mobile nav
+        // ===== MOBILE NAV =====
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
         mobileToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
@@ -1428,7 +1589,7 @@
             link.addEventListener('click', () => navLinks.classList.remove('active'));
         });
 
-        // Smooth scroll
+        // ===== SMOOTH SCROLL =====
         const navbar = document.getElementById('navbar');
         const sections = document.querySelectorAll('section[id]');
         const navLinksAll = document.querySelectorAll('.nav-links a:not(.contact-btn)');
@@ -1444,13 +1605,13 @@
             });
         });
 
-        // Fade-in observer
+        // ===== FADE-IN OBSERVER =====
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Carousel
+        // ===== CAROUSEL =====
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.indicator');
@@ -1484,6 +1645,8 @@
         carouselSection.addEventListener('mouseleave', startAutoPlay);
 
         document.addEventListener('keydown', (e) => {
+            // only handle arrows when lightbox is closed
+            if (lightboxOpen) return;
             if (e.key === 'ArrowLeft') { prevSlide(); stopAutoPlay(); startAutoPlay(); }
             else if (e.key === 'ArrowRight') { nextSlide(); stopAutoPlay(); startAutoPlay(); }
         });
@@ -1497,14 +1660,112 @@
         });
         startAutoPlay();
 
-        // Resize
+        // ===== LIGHTBOX =====
+        const galleryItems   = document.querySelectorAll('.gallery-item');
+        const lightbox       = document.getElementById('lightbox');
+        const lightboxImg    = document.getElementById('lightboxImg');
+        const lightboxClose  = document.getElementById('lightboxClose');
+        const lightboxPrev   = document.getElementById('lightboxPrev');
+        const lightboxNext   = document.getElementById('lightboxNext');
+        const lightboxDots   = document.getElementById('lightboxDots');
+
+        // build the image list in gallery order
+        const galleryImages = [];
+        galleryItems.forEach(item => {
+            const img = item.querySelector('img');
+            galleryImages.push({ src: img.src, alt: img.alt });
+        });
+
+        let currentLightbox = 0;
+        let lightboxOpen    = false;
+
+        // create dots
+        galleryImages.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'lightbox-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToLightbox(i));
+            lightboxDots.appendChild(dot);
+        });
+
+        function updateDots() {
+            document.querySelectorAll('.lightbox-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentLightbox);
+            });
+        }
+
+        function openLightbox(index) {
+            currentLightbox = index;
+            lightboxImg.src = galleryImages[index].src;
+            lightboxImg.alt = galleryImages[index].alt;
+            updateDots();
+            lightbox.classList.add('active');
+            lightboxOpen = true;
+            document.body.style.overflow = 'hidden'; // prevent page scroll
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightboxOpen = false;
+            document.body.style.overflow = ''; // restore scroll
+        }
+
+        function goToLightbox(index) {
+            if (index >= galleryImages.length) index = 0;
+            if (index < 0) index = galleryImages.length - 1;
+            currentLightbox = index;
+            lightboxImg.src = galleryImages[index].src;
+            lightboxImg.alt = galleryImages[index].alt;
+            updateDots();
+        }
+
+        // click on gallery thumbnail → open
+        galleryItems.forEach((item, i) => {
+            item.addEventListener('click', () => openLightbox(i));
+        });
+
+        // close button
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // click on the dark background → close
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // prev / next buttons
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goToLightbox(currentLightbox - 1);
+        });
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goToLightbox(currentLightbox + 1);
+        });
+
+        // keyboard nav when lightbox is open
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxOpen) return;
+            if (e.key === 'Escape')     closeLightbox();
+            if (e.key === 'ArrowLeft')  goToLightbox(currentLightbox - 1);
+            if (e.key === 'ArrowRight') goToLightbox(currentLightbox + 1);
+        });
+
+        // touch-swipe inside lightbox
+        let lbTouchStartX = 0;
+        lightbox.addEventListener('touchstart', (e) => { lbTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            const diff = e.changedTouches[0].screenX - lbTouchStartX;
+            if (diff < -40) goToLightbox(currentLightbox + 1);
+            if (diff >  40) goToLightbox(currentLightbox - 1);
+        });
+
+        // ===== RESIZE =====
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => { if (window.innerWidth > 768) navLinks.classList.remove('active'); }, 250);
         });
 
-        // Scroll — navbar + active nav + parallax
+        // ===== SCROLL — navbar + active nav + parallax =====
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
@@ -1519,10 +1780,10 @@
                         if (link.getAttribute('href').slice(1) === current) link.classList.add('active');
                     });
 
-                    const hero = document.querySelector('.hero-content');
+                    const hero     = document.querySelector('.hero-content');
                     const heroLogo = document.querySelector('.hero-logo');
                     if (hero && heroLogo && scrollY < 800) {
-                        hero.style.transform = `translateY(${scrollY * 0.3}px)`;
+                        hero.style.transform     = `translateY(${scrollY * 0.3}px)`;
                         heroLogo.style.transform = `translateY(${scrollY * 0.2}px)`;
                     }
                     ticking = false;
@@ -1533,6 +1794,3 @@
     </script>
 </body>
 </html>
-
-
-
