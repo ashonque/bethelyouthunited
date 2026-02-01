@@ -29,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* News Ticker */
         .news-ticker {
             background: linear-gradient(90deg, var(--primary-green), #4a7d56);
             color: white;
@@ -75,19 +74,14 @@
         }
 
         @keyframes scroll {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .news-ticker:hover .ticker-wrapper {
             animation-play-state: paused;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             width: 100%;
@@ -134,16 +128,10 @@
             font-weight: 500;
             font-size: 1rem;
             transition: color 0.3s ease;
-            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--light-text);
-        }
-
-        .nav-links a.active {
-            color: var(--light-text);
-        }
+        .nav-links a:hover { color: var(--light-text); }
+        .nav-links a.active { color: var(--light-text); }
 
         .contact-btn {
             background: var(--primary-green);
@@ -178,7 +166,6 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -187,7 +174,6 @@
             padding: 6rem 3rem 3rem;
             max-width: 1400px;
             margin: 0 auto;
-            position: relative;
         }
 
         .hero-content {
@@ -222,7 +208,7 @@
         .logo-circle {
             width: 500px;
             height: 500px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -234,10 +220,7 @@
         .logo-circle::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
             border-radius: 50%;
             border: 2px solid transparent;
             border-top-color: var(--primary-green);
@@ -266,12 +249,6 @@
             opacity: 0.3;
         }
 
-        .logo-text {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 8px;
-        }
-
         .logo-subtext {
             font-size: 1.2rem;
             letter-spacing: 4px;
@@ -294,10 +271,10 @@
         .cta-button:hover {
             background: #4a7d56;
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(90, 147, 103, 0.3);
+            box-shadow: 0 10px 30px rgba(90,147,103,0.3);
         }
 
-        /* Image Carousel Section */
+        /* ===== CAROUSEL ===== */
         .carousel-section {
             position: relative;
             width: 100%;
@@ -319,9 +296,6 @@
             height: 100%;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .carousel-slide.active {
@@ -332,58 +306,32 @@
         .carousel-slide::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
             z-index: 1;
         }
 
-        .carousel-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: linear-gradient(135deg, rgba(90, 147, 103, 0.3), rgba(44, 90, 160, 0.3));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: rgba(255, 255, 255, 0.2);
-        }
-
-        .carousel-image img {
+        .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .carousel-image.has-image {
-            background: none;
-            font-size: 0;
-        }
-
         .carousel-caption {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             padding: 4rem 3rem;
             z-index: 2;
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         }
 
-        .carousel-caption-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .carousel-caption-content { max-width: 1400px; margin: 0 auto; }
 
         .carousel-caption h3 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            letter-spacing: -0.5px;
         }
 
         .carousel-caption p {
@@ -404,9 +352,9 @@
         .carousel-btn {
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -436,7 +384,7 @@
         .indicator {
             width: 12px;
             height: 12px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.3);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -448,21 +396,16 @@
             border-radius: 6px;
         }
 
-        .indicator:hover {
-            background: rgba(255, 255, 255, 0.6);
-        }
+        .indicator:hover { background: rgba(255,255,255,0.6); }
 
-        /* Mission Section */
+        /* ===== MISSION / ABOUT ===== */
         .mission {
             padding: 8rem 3rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
+        .section-header { text-align: center; margin-bottom: 4rem; }
 
         .section-tag {
             color: var(--primary-green);
@@ -487,10 +430,10 @@
             margin: 0 auto;
         }
 
-        /* Location Section */
+        /* ===== LOCATION ===== */
         .location {
             padding: 8rem 3rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
         }
 
         .location-content {
@@ -524,7 +467,7 @@
         .detail-icon {
             width: 50px;
             height: 50px;
-            background: rgba(90, 147, 103, 0.1);
+            background: rgba(90,147,103,0.1);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -539,37 +482,23 @@
             font-weight: 600;
         }
 
-        .detail-text p {
-            color: var(--gray-text);
-        }
+        .detail-text p { color: var(--gray-text); }
 
-        .map-placeholder {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .map-container {
             border-radius: 12px;
             height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            opacity: 0.3;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .map-placeholder img {
+        .map-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 1;
+            display: block;
         }
 
-        .map-placeholder.has-image {
-            background: none;
-            font-size: 0;
-            opacity: 1;
-        }
-
-        /* Gallery Section */
+        /* ===== GALLERY ===== */
         .gallery {
             padding: 8rem 3rem;
             max-width: 1400px;
@@ -585,17 +514,11 @@
 
         .gallery-item {
             aspect-ratio: 1;
-            background: linear-gradient(135deg, rgba(90, 147, 103, 0.2), rgba(90, 147, 103, 0.05));
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .gallery-item img {
@@ -603,32 +526,25 @@
             height: 100%;
             object-fit: cover;
             display: block;
-        }
-
-        .gallery-item.has-image {
-            background: none;
-            font-size: 0;
-            opacity: 1;
+            transition: transform 0.3s ease;
         }
 
         .gallery-item:hover {
-            opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.03);
             border-color: var(--primary-green);
+            box-shadow: 0 8px 25px rgba(90,147,103,0.3);
         }
 
+        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
 
-        /* Events Section */
+        /* ===== EVENTS ===== */
         .events {
             padding: 8rem 3rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
         }
 
-        .events-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .events-container { max-width: 1400px; margin: 0 auto; }
 
         .events-grid {
             display: grid;
@@ -638,8 +554,8 @@
         }
 
         .event-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -647,30 +563,18 @@
 
         .event-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(90, 147, 103, 0.3);
+            border-color: rgba(90,147,103,0.3);
         }
 
         .event-image {
             height: 250px;
-            background: linear-gradient(135deg, rgba(90, 147, 103, 0.3), rgba(90, 147, 103, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
         }
 
-        .event-content {
-            padding: 2rem;
-        }
-
-        .event-date {
-            color: var(--primary-green);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
+        .event-content { padding: 2rem; }
 
         .event-content h3 {
             font-size: 1.5rem;
@@ -683,7 +587,7 @@
             line-height: 1.8;
         }
 
-        /* News Section */
+        /* ===== NEWS ===== */
         .news {
             padding: 8rem 3rem;
             max-width: 1400px;
@@ -701,20 +605,20 @@
             display: grid;
             grid-template-columns: 200px 1fr;
             gap: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 12px;
             padding: 2rem;
             transition: all 0.3s ease;
         }
 
         .news-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(90, 147, 103, 0.3);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(90,147,103,0.3);
         }
 
         .news-image {
-            background: linear-gradient(135deg, rgba(90, 147, 103, 0.2), rgba(90, 147, 103, 0.05));
+            background: linear-gradient(135deg, rgba(90,147,103,0.2), rgba(90,147,103,0.05));
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -739,16 +643,13 @@
             line-height: 1.8;
         }
 
-        /* Team Section */
+        /* ===== TEAM ===== */
         .team {
             padding: 8rem 3rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
         }
 
-        .team-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .team-container { max-width: 1400px; margin: 0 auto; }
 
         .team-grid {
             display: grid;
@@ -762,21 +663,19 @@
             transition: transform 0.3s ease;
         }
 
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
+        .team-member:hover { transform: translateY(-10px); }
 
         .team-avatar {
             width: 150px;
             height: 150px;
-            background: linear-gradient(135deg, rgba(90, 147, 103, 0.3), rgba(90, 147, 103, 0.1));
+            background: linear-gradient(135deg, rgba(90,147,103,0.3), rgba(90,147,103,0.1));
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            border: 3px solid rgba(255, 255, 255, 0.05);
+            border: 3px solid rgba(255,255,255,0.05);
         }
 
         .team-member h4 {
@@ -796,7 +695,7 @@
             font-size: 0.9rem;
         }
 
-        /* Contact Section */
+        /* ===== CONTACT ===== */
         .contact {
             padding: 8rem 3rem;
             max-width: 1400px;
@@ -820,8 +719,8 @@
         .form-group textarea {
             width: 100%;
             padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 8px;
             color: white;
             font-family: inherit;
@@ -833,13 +732,11 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-green);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
         }
 
         .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--gray-text);
-        }
+        .form-group textarea::placeholder { color: var(--gray-text); }
 
         .submit-btn {
             padding: 1.2rem 2.5rem;
@@ -864,11 +761,11 @@
             gap: 2.5rem;
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             padding: 4rem 3rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-content {
@@ -897,13 +794,8 @@
             font-weight: 600;
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 0.8rem;
-        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 0.8rem; }
 
         .footer-links a {
             color: var(--gray-text);
@@ -911,9 +803,7 @@
             transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--light-text);
-        }
+        .footer-links a:hover { color: var(--light-text); }
 
         .social-links {
             display: flex;
@@ -924,7 +814,7 @@
         .social-links a {
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -943,32 +833,20 @@
             max-width: 1400px;
             margin: 0 auto;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255,255,255,0.05);
             text-align: center;
             color: var(--gray-text);
         }
 
-        /* Animations */
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes rotate {
@@ -992,99 +870,42 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
-        
-        /* Extra Large Screens */
+        /* ===== RESPONSIVE ===== */
         @media (min-width: 1920px) {
-            .nav-container,
-            .hero,
-            .mission,
-            .location-content,
-            .events-container,
-            .news,
-            .team-container,
-            .contact {
+            .nav-container, .hero, .mission, .location-content,
+            .events-container, .news, .team-container, .contact {
                 max-width: 1600px;
             }
         }
 
-        /* Large Desktop */
         @media (max-width: 1400px) {
-            .nav-container {
-                padding: 0 2rem;
-            }
-
-            .hero {
-                padding: 6rem 2rem 3rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
+            .nav-container { padding: 0 2rem; }
+            .hero { padding: 6rem 2rem 3rem; }
+            .section-title { font-size: 2.5rem; }
         }
 
-        /* Tablet Landscape */
         @media (max-width: 1024px) {
-            .hero {
-                padding: 5rem 2rem 2rem;
-            }
-
-            .hero-content {
-                max-width: 500px;
-            }
-
-            .logo-circle {
-                width: 400px;
-                height: 400px;
-            }
-
-            .cross-logo {
-                font-size: 6rem;
-            }
-
-            .events-grid,
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .news-grid {
-                gap: 2rem;
-            }
-
-            .about-content > div {
-                padding: 2rem !important;
-                font-size: 1.1rem !important;
-            }
+            .hero { padding: 5rem 2rem 2rem; }
+            .hero-content { max-width: 500px; }
+            .logo-circle { width: 400px; height: 400px; }
+            .cross-logo { font-size: 6rem; }
+            .events-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .news-grid { gap: 2rem; }
+            .about-content > div { padding: 2rem !important; font-size: 1.1rem !important; }
         }
 
-        /* Tablet Portrait */
         @media (max-width: 768px) {
-            body {
-                font-size: 14px;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-
-            .nav-container {
-                padding: 0 1.5rem;
-            }
-
+            body { font-size: 14px; }
+            .mobile-toggle { display: flex; }
+            .nav-container { padding: 0 1.5rem; }
             .nav-links {
                 position: fixed;
                 left: -100%;
                 top: 132px;
                 flex-direction: column;
-                background: rgba(10, 10, 10, 0.98);
+                background: rgba(10,10,10,0.98);
                 width: 100%;
                 padding: 2rem;
                 transition: 0.3s;
@@ -1092,373 +913,104 @@
                 max-height: calc(100vh - 132px);
                 overflow-y: auto;
             }
-
-            .nav-links.active {
-                left: 0;
-            }
-
+            .nav-links.active { left: 0; }
             .hero {
                 flex-direction: column;
                 text-align: center;
                 padding: 7rem 1.5rem 2rem;
                 min-height: auto;
             }
-
-            .hero-content {
-                max-width: 100%;
-            }
-
-            .hero-content h1 {
-                font-size: 1.4rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-content .verse {
-                font-size: 1rem;
-                margin-top: 1.5rem;
-            }
-
-            .cta-button {
-                padding: 0.9rem 2rem;
-                font-size: 0.95rem;
-            }
-
-            .logo-circle {
-                width: 300px;
-                height: 300px;
-                margin-top: 2rem;
-            }
-
-            .cross-logo {
-                font-size: 5rem;
-            }
-
-            .logo-text {
-                font-size: 2rem;
-                letter-spacing: 4px;
-            }
-
-            .logo-subtext {
-                font-size: 1rem;
-                letter-spacing: 2px;
-            }
-
-            /* Carousel Mobile */
-            .carousel-section {
-                height: 50vh;
-                min-height: 350px;
-            }
-
-            .carousel-caption {
-                padding: 1.5rem 1rem;
-            }
-
-            .carousel-caption h3 {
-                font-size: 1.5rem;
-            }
-
-            .carousel-caption p {
-                font-size: 0.95rem;
-            }
-
-            .carousel-controls {
-                bottom: 1rem;
-                right: 1rem;
-                gap: 0.5rem;
-            }
-
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .carousel-indicators {
-                bottom: 1rem;
-                gap: 0.5rem;
-            }
-
-            .indicator {
-                width: 10px;
-                height: 10px;
-            }
-
-            .indicator.active {
-                width: 30px;
-            }
-
-            .carousel-image {
-                font-size: 3rem;
-            }
-
-            /* Sections */
-            .mission,
-            .location,
-            .gallery,
-            .events,
-            .news,
-            .team,
-            .contact {
+            .hero-content { max-width: 100%; }
+            .hero-content h1 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+            .hero-content .verse { font-size: 1rem; margin-top: 1.5rem; }
+            .cta-button { padding: 0.9rem 2rem; font-size: 0.95rem; }
+            .logo-circle { width: 300px; height: 300px; margin-top: 2rem; }
+            .cross-logo { font-size: 5rem; }
+            .logo-subtext { font-size: 1rem; letter-spacing: 2px; }
+            .carousel-section { height: 50vh; min-height: 350px; }
+            .carousel-caption { padding: 1.5rem 1rem; }
+            .carousel-caption h3 { font-size: 1.5rem; }
+            .carousel-caption p { font-size: 0.95rem; }
+            .carousel-controls { bottom: 1rem; right: 1rem; gap: 0.5rem; }
+            .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+            .carousel-indicators { bottom: 1rem; gap: 0.5rem; }
+            .indicator { width: 10px; height: 10px; }
+            .indicator.active { width: 30px; }
+            .mission, .location, .gallery, .events, .news, .team, .contact {
                 padding: 4rem 1.5rem;
             }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .section-description {
-                font-size: 1rem;
-            }
-
-            /* About Us Mobile */
-            .about-content > div {
-                padding: 1.5rem !important;
-                font-size: 1rem !important;
-                line-height: 1.8 !important;
-            }
-
-            /* Events Grid */
-            .events-grid,
-            .team-grid,
-            .news-grid,
-            .gallery-grid {
+            .section-title { font-size: 1.8rem; }
+            .section-description { font-size: 1rem; }
+            .about-content > div { padding: 1.5rem !important; font-size: 1rem !important; line-height: 1.8 !important; }
+            .events-grid, .team-grid, .news-grid, .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-
-            .event-image {
-                height: 200px;
-            }
-
-            .event-content {
-                padding: 1.5rem;
-            }
-
-            /* Location */
-            .location-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .location-info h2 {
-                font-size: 2rem;
-            }
-
-            .map-placeholder {
-                height: 300px;
-            }
-
-            /* Contact */
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            /* News Cards */
-            .news-card {
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
-            }
-
-            .news-image {
-                height: 150px;
-                font-size: 2.5rem;
-            }
-
-            /* Footer */
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            /* News Ticker Mobile */
-            .ticker-label {
-                font-size: 0.8rem;
-                padding: 0.4rem 1.2rem;
-            }
-
-            .ticker-content {
-                font-size: 0.95rem;
-            }
-
-            .ticker-content strong {
-                font-size: 1.1rem;
-            }
+            .event-image { height: 200px; }
+            .event-content { padding: 1.5rem; }
+            .location-content { grid-template-columns: 1fr; gap: 2rem; }
+            .location-info h2 { font-size: 2rem; }
+            .map-container { height: 300px; }
+            .contact-content { grid-template-columns: 1fr; gap: 2rem; }
+            .news-card { grid-template-columns: 1fr; padding: 1.5rem; }
+            .news-image { height: 150px; font-size: 2.5rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .ticker-label { font-size: 0.8rem; padding: 0.4rem 1.2rem; }
+            .ticker-content { font-size: 0.95rem; }
+            .ticker-content strong { font-size: 1.1rem; }
         }
 
-        /* Small Mobile Phones */
         @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.2rem;
-            }
-
-            .hero-content .verse {
-                font-size: 0.9rem;
-            }
-
-            .logo-circle {
-                width: 250px;
-                height: 250px;
-            }
-
-            .cross-logo {
-                font-size: 4rem;
-            }
-
-            .cross-logo::before {
-                font-size: 4rem;
-                top: -1.5rem;
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-            }
-
-            .logo-subtext {
-                font-size: 0.85rem;
-                letter-spacing: 1px;
-            }
-
-            .carousel-section {
-                height: 40vh;
-                min-height: 300px;
-            }
-
-            .carousel-caption {
-                padding: 1rem;
-            }
-
-            .carousel-caption h3 {
-                font-size: 1.2rem;
-            }
-
-            .carousel-caption p {
-                font-size: 0.85rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .section-tag {
-                font-size: 0.8rem;
-            }
-
-            .about-content > div {
-                padding: 1.2rem !important;
-                font-size: 0.95rem !important;
-            }
-
-            .detail-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .team-avatar {
-                width: 120px;
-                height: 120px;
-                font-size: 2.5rem;
-            }
-
-            .contact-btn {
-                font-size: 1rem;
-                padding: 0.9rem 2rem;
-            }
-
-            .event-image {
-                height: 150px;
-            }
-
-            .event-image div {
-                font-size: 3.5rem !important;
-            }
-
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            .nav-links {
-                padding: 1.5rem;
-            }
+            .hero-content h1 { font-size: 1.2rem; }
+            .hero-content .verse { font-size: 0.9rem; }
+            .logo-circle { width: 250px; height: 250px; }
+            .cross-logo { font-size: 4rem; }
+            .cross-logo::before { font-size: 4rem; top: -1.5rem; }
+            .logo-subtext { font-size: 0.85rem; letter-spacing: 1px; }
+            .carousel-section { height: 40vh; min-height: 300px; }
+            .carousel-caption { padding: 1rem; }
+            .carousel-caption h3 { font-size: 1.2rem; }
+            .carousel-caption p { font-size: 0.85rem; }
+            .section-title { font-size: 1.5rem; }
+            .section-tag { font-size: 0.8rem; }
+            .about-content > div { padding: 1.2rem !important; font-size: 0.95rem !important; }
+            .detail-icon { width: 40px; height: 40px; font-size: 1.2rem; }
+            .team-avatar { width: 120px; height: 120px; font-size: 2.5rem; }
+            .contact-btn { font-size: 1rem; padding: 0.9rem 2rem; }
+            .event-image { height: 150px; }
+            .event-image div { font-size: 3.5rem !important; }
+            .cta-button { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+            .nav-links { padding: 1.5rem; }
         }
 
-        /* Extra Small Devices */
         @media (max-width: 360px) {
-            .hero-content h1 {
-                font-size: 1.1rem;
-            }
-
-            .logo-circle {
-                width: 220px;
-                height: 220px;
-            }
-
-            .cross-logo {
-                font-size: 3.5rem;
-            }
-
-            .section-title {
-                font-size: 1.3rem;
-            }
-
-            .about-content > div {
-                font-size: 0.9rem !important;
-                padding: 1rem !important;
-            }
-
-            .carousel-caption h3 {
-                font-size: 1.1rem;
-            }
-
-            .carousel-caption p {
-                font-size: 0.8rem;
-            }
+            .hero-content h1 { font-size: 1.1rem; }
+            .logo-circle { width: 220px; height: 220px; }
+            .cross-logo { font-size: 3.5rem; }
+            .section-title { font-size: 1.3rem; }
+            .about-content > div { font-size: 0.9rem !important; padding: 1rem !important; }
+            .carousel-caption h3 { font-size: 1.1rem; }
+            .carousel-caption p { font-size: 0.8rem; }
         }
 
-        /* Landscape Mode for Mobile */
         @media (max-height: 500px) and (orientation: landscape) {
-            .hero {
-                min-height: auto;
-                padding: 6rem 2rem 2rem;
-            }
-
-            .logo-circle {
-                width: 200px;
-                height: 200px;
-            }
-
-            .cross-logo {
-                font-size: 3rem;
-            }
-
-            .carousel-section {
-                height: 80vh;
-            }
+            .hero { min-height: auto; padding: 6rem 2rem 2rem; }
+            .logo-circle { width: 200px; height: 200px; }
+            .cross-logo { font-size: 3rem; }
+            .carousel-section { height: 80vh; }
         }
 
-        /* Improved touch targets for mobile */
         @media (hover: none) and (pointer: coarse) {
-            .nav-links a,
-            .carousel-btn,
-            .indicator,
-            .cta-button,
-            .contact-btn,
-            .submit-btn {
+            .nav-links a, .carousel-btn, .indicator, .cta-button, .contact-btn, .submit-btn {
                 min-height: 44px;
                 min-width: 44px;
             }
-
-            .carousel-btn {
-                width: 50px;
-                height: 50px;
-            }
+            .carousel-btn { width: 50px; height: 50px; }
         }
     </style>
 </head>
 <body>
+
     <!-- News Ticker -->
     <div class="news-ticker">
         <div class="ticker-wrapper">
@@ -1477,9 +1029,7 @@
         <div class="nav-container">
             <a href="#" class="logo">Bethel Youth United</a>
             <div class="mobile-toggle" id="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
@@ -1494,7 +1044,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.</h1>
@@ -1511,15 +1061,15 @@
         </div>
     </section>
 
-    <!-- Image Carousel Section -->
+    <!-- ============================================================
+         CAROUSEL — images sit in the SAME folder as index.html
+         so the src is just the filename, e.g. src="main.jpg"
+         ============================================================ -->
     <section class="carousel-section">
         <div class="carousel-container">
-            <!-- Slide 1 -->
+
             <div class="carousel-slide active" data-slide="0">
-                <div class="carousel-image">
-                    <!-- TO ADD IMAGE: <img src="images/slide1.jpg" alt="Worship and Praise"> -->
-                    🎵
-                </div>
+                <img src="main.jpg" alt="Worship and Praise">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Worship & Praise</h3>
@@ -1528,12 +1078,8 @@
                 </div>
             </div>
 
-            <!-- Slide 2 -->
             <div class="carousel-slide" data-slide="1">
-                <div class="carousel-image">
-                    <!-- TO ADD IMAGE: <img src="images/slide2.jpg" alt="Community and Fellowship"> -->
-                    🙏
-                </div>
+                <img src="snow.jpg" alt="Community and Fellowship">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Community & Fellowship</h3>
@@ -1542,12 +1088,8 @@
                 </div>
             </div>
 
-            <!-- Slide 3 -->
             <div class="carousel-slide" data-slide="2">
-                <div class="carousel-image">
-                    <!-- TO ADD IMAGE: <img src="images/slide3.jpg" alt="Retreats and Adventures"> -->
-                    ⛺
-                </div>
+                <img src="we.jpg" alt="Retreats and Adventures">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Retreats & Adventures</h3>
@@ -1556,12 +1098,8 @@
                 </div>
             </div>
 
-            <!-- Slide 4 -->
             <div class="carousel-slide" data-slide="3">
-                <div class="carousel-image">
-                    <!-- TO ADD IMAGE: <img src="images/slide4.jpg" alt="Serving Together"> -->
-                    🤝
-                </div>
+                <img src="p.jpg" alt="Serving Together">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Serving Together</h3>
@@ -1570,12 +1108,8 @@
                 </div>
             </div>
 
-            <!-- Slide 5 -->
             <div class="carousel-slide" data-slide="4">
-                <div class="carousel-image">
-                    <!-- TO ADD IMAGE: <img src="images/slide5.jpg" alt="Growing in Faith"> -->
-                    📖
-                </div>
+                <img src="fo.jpeg" alt="Growing in Faith">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Growing in Faith</h3>
@@ -1599,55 +1133,30 @@
         </div>
     </section>
 
-    <!-- Mission Section -->
+    <!-- About Us -->
     <section id="mission" class="mission">
         <div class="section-header fade-in">
             <div class="section-tag">Who We Are</div>
             <h2 class="section-title">About Us</h2>
         </div>
-
-        <div class="about-content" style="max-width: 1200px; margin: 3rem auto; text-align: left;">
-            <div style="background: linear-gradient(135deg, rgba(90, 147, 103, 0.1), rgba(44, 90, 160, 0.05)); padding: 3rem; border-radius: 12px; border: 1px solid rgba(90, 147, 103, 0.2); line-height: 2; color: rgba(255,255,255,0.9); box-shadow: 0 10px 40px rgba(0,0,0,0.3); font-size: 1.2rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
-                <p style="margin-bottom: 1.5rem;">
-                    <strong style="color: var(--primary-green);">Bethel Youth United (BYU)</strong>, under the Bethel International Pentecostal Church (B.I.P.C.), Germany, is led by <strong style="color: var(--primary-green);">Brother Sharon Shaju</strong>.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem;">
-                    At Bethel Youth United, we are passionate about <strong style="color: var(--primary-green);">loving God and loving people</strong>, because love is the most important foundation of the Christian faith. Jesus said, <em>"Love the Lord your God with all your heart and with all your soul and with all your mind. This is the first and greatest commandment. And the second is like it: Love your neighbor as yourself."</em> (Matthew 22:37-39)
-                </p>
-                
-                <p style="margin-bottom: 1.5rem;">
-                    What began in <strong>2022</strong> as simple Zoom meetings has grown powerfully—hosting <strong style="color: var(--primary-green);">two impactful conferences</strong> and uniting young people from diverse backgrounds, nationalities, languages, and ethnicities, all seeking a genuine encounter with God.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem;">
-                    Our worship flows in <strong style="color: var(--primary-green);">multiple languages</strong>: Malayalam, English, Tamil, German, Hindi, and more—reflecting the multicultural heartbeat of our church family.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem; background: rgba(90, 147, 103, 0.1); padding: 1.5rem; border-left: 4px solid var(--primary-green); border-radius: 8px;">
-                    <strong style="color: var(--primary-green);">The revival among our youth is truly miraculous.</strong> Young lives are being transformed—experiencing healing, water baptism in the name of Jesus, and receiving the baptism of the Holy Ghost with the evidence of speaking in tongues. Our meetings are filled with authentic freedom in worship.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem;">
-                    We offer dynamic weekly fellowships, powerful worship sessions, Bible studies, prayer meetings, youth conferences, camps, mentorship, and opportunities to serve and grow in leadership.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem;">
-                    By God's grace, Bethel Youth United extends beyond Germany, connecting with branch churches in <strong style="color: var(--primary-green);">Germany, Sweden, Lithuania, and across Europe</strong>.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem; font-weight: 700; color: var(--primary-green); text-align: center; padding: 1rem; background: rgba(90, 147, 103, 0.15); border-radius: 8px;">
-                    "You will feel a move of God, and it's a family!"
-                </p>
-                
-                <p style="margin-bottom: 0; text-align: center;">
-                    We warmly invite you—whether you're a teen, young adult, or youth at heart—to come and experience the fresh fire of Pentecost. <strong style="color: var(--primary-green);">Experience His Glory. Enter His Presence. Receive His Love!</strong> 🔥
-                </p>
+        <div class="about-content" style="max-width:1200px;margin:3rem auto;text-align:left;">
+            <div style="background:linear-gradient(135deg,rgba(90,147,103,0.1),rgba(44,90,160,0.05));padding:3rem;border-radius:12px;border:1px solid rgba(90,147,103,0.2);line-height:2;color:rgba(255,255,255,0.9);box-shadow:0 10px 40px rgba(0,0,0,0.3);font-size:1.2rem;">
+                <p style="margin-bottom:1.5rem;"><strong style="color:var(--primary-green);">Bethel Youth United (BYU)</strong>, under the Bethel International Pentecostal Church (B.I.P.C.), Germany, is led by <strong style="color:var(--primary-green);">Brother Sharon Shaju</strong>.</p>
+                <p style="margin-bottom:1.5rem;">At Bethel Youth United, we are passionate about <strong style="color:var(--primary-green);">loving God and loving people</strong>, because love is the most important foundation of the Christian faith. Jesus said, <em>"Love the Lord your God with all your heart and with all your soul and with all your mind. This is the first and greatest commandment. And the second is like it: Love your neighbor as yourself."</em> (Matthew 22:37-39)</p>
+                <p style="margin-bottom:1.5rem;">What began in <strong>2022</strong> as simple Zoom meetings has grown powerfully—hosting <strong style="color:var(--primary-green);">two impactful conferences</strong> and uniting young people from diverse backgrounds, nationalities, languages, and ethnicities, all seeking a genuine encounter with God.</p>
+                <p style="margin-bottom:1.5rem;">Our worship flows in <strong style="color:var(--primary-green);">multiple languages</strong>: Malayalam, English, Tamil, German, Hindi, and more—reflecting the multicultural heartbeat of our church family.</p>
+                <p style="margin-bottom:1.5rem;background:rgba(90,147,103,0.1);padding:1.5rem;border-left:4px solid var(--primary-green);border-radius:8px;"><strong style="color:var(--primary-green);">The revival among our youth is truly miraculous.</strong> Young lives are being transformed—experiencing healing, water baptism in the name of Jesus, and receiving the baptism of the Holy Ghost with the evidence of speaking in tongues. Our meetings are filled with authentic freedom in worship.</p>
+                <p style="margin-bottom:1.5rem;">We offer dynamic weekly fellowships, powerful worship sessions, Bible studies, prayer meetings, youth conferences, camps, mentorship, and opportunities to serve and grow in leadership.</p>
+                <p style="margin-bottom:1.5rem;">By God's grace, Bethel Youth United extends beyond Germany, connecting with branch churches in <strong style="color:var(--primary-green);">Germany, Sweden, Lithuania, and across Europe</strong>.</p>
+                <p style="margin-bottom:1.5rem;font-weight:700;color:var(--primary-green);text-align:center;padding:1rem;background:rgba(90,147,103,0.15);border-radius:8px;">"You will feel a move of God, and it's a family!"</p>
+                <p style="margin-bottom:0;text-align:center;">We warmly invite you—whether you're a teen, young adult, or youth at heart—to come and experience the fresh fire of Pentecost. <strong style="color:var(--primary-green);">Experience His Glory. Enter His Presence. Receive His Love!</strong> 🔥</p>
             </div>
         </div>
     </section>
 
-    <!-- Location Section -->
+    <!-- ============================================================
+         LOCATION — map image also in root folder
+         ============================================================ -->
     <section id="location" class="location">
         <div class="location-content">
             <div class="location-info fade-in">
@@ -1669,49 +1178,32 @@
                     </div>
                 </div>
             </div>
-            <div class="map-placeholder fade-in">
-                <!-- TO ADD MAP IMAGE: <img src="images/location-map.jpg" alt="Church Location"> -->
-                🗺️
+            <div class="map-container fade-in">
+                <img src="main.jpg" alt="Bethel Church Location">
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- ============================================================
+         GALLERY — 7 slots filled from the 9 available images
+         ============================================================ -->
     <section id="gallery" class="gallery">
+        <div class="section-header fade-in">
+            <div class="section-tag">Our Community</div>
+            <h2 class="section-title">Gallery</h2>
+        </div>
         <div class="gallery-grid">
-            <!-- TO ADD CHURCH IMAGES -->
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church1.jpg" alt="Bethel Church"> -->
-                📷
-            </div>
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church2.jpg" alt="Church Interior"> -->
-                📷
-            </div>
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church3.jpg" alt="Worship Service"> -->
-                📷
-            </div>
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church4.jpg" alt="Youth Gathering"> -->
-                📷
-            </div>
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church5.jpg" alt="Church Building"> -->
-                📷
-            </div>
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church6.jpg" alt="Community"> -->
-                📷
-            </div>
-            <div class="gallery-item fade-in">
-                <!-- <img src="images/church7.jpg" alt="Fellowship"> -->
-                📷
-            </div>
+            <div class="gallery-item fade-in"><img src="fi.JPEG"   alt="Bethel Church"></div>
+            <div class="gallery-item fade-in"><img src="fift.JPEG" alt="Church Fellowship"></div>
+            <div class="gallery-item fade-in"><img src="se.JPEG"   alt="Worship Service"></div>
+            <div class="gallery-item fade-in"><img src="six.jpeg"  alt="Youth Gathering"></div>
+            <div class="gallery-item fade-in"><img src="fo.jpeg"   alt="Community"></div>
+            <div class="gallery-item fade-in"><img src="snow.jpg"  alt="Church Event"></div>
+            <div class="gallery-item fade-in"><img src="we.jpg"    alt="Fellowship"></div>
         </div>
     </section>
 
-    <!-- Events Section -->
+    <!-- Events -->
     <section id="events" class="events">
         <div class="events-container">
             <div class="section-header fade-in">
@@ -1719,45 +1211,35 @@
                 <h2 class="section-title">Upcoming Events</h2>
                 <p class="section-description">Mark your calendar and join us for life-changing experiences!</p>
             </div>
-
             <div class="events-grid">
-                <div class="event-card fade-in" style="border-top: 4px solid var(--secondary-color);">
-                    <div class="event-image" style="background: linear-gradient(135deg, rgba(243, 156, 18, 0.4), rgba(243, 156, 18, 0.2));">
-                        <div style="font-size: 5rem;">🔥</div>
-                    </div>
-                    <div class="event-content" style="background: linear-gradient(to bottom, rgba(243, 156, 18, 0.05), transparent);">
-                        <div class="event-date" style="background: var(--secondary-color); color: white; display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;">MAY 8-10, 2026</div>
-                        <h3 style="color: var(--secondary-color); font-size: 1.8rem;">Third Conference</h3>
-                        <p style="font-size: 1.05rem; font-weight: 500;">Three powerful days of worship, anointed teaching, and divine encounters! Experience breakthrough, healing, and the fire of Pentecost. This is the gathering you cannot afford to miss!</p>
-                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(243, 156, 18, 0.1); border-left: 3px solid var(--secondary-color); border-radius: 4px;">
-                            <strong style="color: var(--secondary-color);">Special Speakers | Powerful Worship | Life Transformation</strong>
+                <div class="event-card fade-in" style="border-top:4px solid var(--secondary-color);">
+                    <div class="event-image" style="background:linear-gradient(135deg,rgba(243,156,18,0.4),rgba(243,156,18,0.2));"><div style="font-size:5rem;">🔥</div></div>
+                    <div class="event-content" style="background:linear-gradient(to bottom,rgba(243,156,18,0.05),transparent);">
+                        <div style="background:var(--secondary-color);color:white;display:inline-block;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;margin-bottom:1rem;font-weight:600;letter-spacing:1px;">MAY 8-10, 2026</div>
+                        <h3 style="color:var(--secondary-color);font-size:1.8rem;">Third Conference</h3>
+                        <p style="font-size:1.05rem;font-weight:500;">Three powerful days of worship, anointed teaching, and divine encounters! Experience breakthrough, healing, and the fire of Pentecost. This is the gathering you cannot afford to miss!</p>
+                        <div style="margin-top:1.5rem;padding:1rem;background:rgba(243,156,18,0.1);border-left:3px solid var(--secondary-color);border-radius:4px;">
+                            <strong style="color:var(--secondary-color);">Special Speakers | Powerful Worship | Life Transformation</strong>
                         </div>
                     </div>
                 </div>
-                <div class="event-card fade-in" style="border-top: 4px solid var(--primary-green);">
-                    <div class="event-image" style="background: linear-gradient(135deg, rgba(90, 147, 103, 0.4), rgba(90, 147, 103, 0.2));">
-                        <div style="font-size: 5rem;">💻</div>
-                    </div>
+                <div class="event-card fade-in" style="border-top:4px solid var(--primary-green);">
+                    <div class="event-image" style="background:linear-gradient(135deg,rgba(90,147,103,0.4),rgba(90,147,103,0.2));"><div style="font-size:5rem;">💻</div></div>
                     <div class="event-content">
-                        <div class="event-date" style="background: var(--primary-green); color: white; display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;">EVERY FRIDAY • 8:30 PM GERMAN TIME</div>
-                        <h3 style="font-size: 1.6rem;">Weekly Youth Meetings on Zoom</h3>
+                        <div style="background:var(--primary-green);color:white;display:inline-block;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;margin-bottom:1rem;font-weight:600;letter-spacing:1px;">EVERY FRIDAY • 8:30 PM GERMAN TIME</div>
+                        <h3 style="font-size:1.6rem;">Weekly Youth Meetings on Zoom</h3>
                         <p>Join us every Friday for dynamic worship, relevant biblical teaching, and authentic fellowship. Experience God's presence in a powerful way as we gather together as a family.</p>
-                        <a href="https://us06web.zoom.us/j/85421151544?pwd=TjNYd080NitrRWhwOWdwUTN1c2kyQT09" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.8rem 1.5rem; background: #2D8CFF; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(45, 140, 255, 0.3);" onmouseover="this.style.background='#0B5ED7'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(45, 140, 255, 0.5)'" onmouseout="this.style.background='#2D8CFF'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(45, 140, 255, 0.3)'">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <path d="M8 10v4l3.5-2L8 10zm6 0v4l3.5-2L14 10z" fill="#2D8CFF"/>
-                            </svg>
+                        <a href="https://us06web.zoom.us/j/85421151544?pwd=TjNYd080NitrRWhwOWdwUTN1c2kyQT09" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;padding:0.8rem 1.5rem;background:#2D8CFF;color:white;text-decoration:none;border-radius:8px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 10px rgba(45,140,255,0.3);" onmouseover="this.style.background='#0B5ED7';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#2D8CFF';this.style.transform='translateY(0)'">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M8 10v4l3.5-2L8 10zm6 0v4l3.5-2L14 10z" fill="#2D8CFF"/></svg>
                             Join Zoom Meeting
                         </a>
                     </div>
                 </div>
-                <div class="event-card fade-in" style="border-top: 4px solid #e74c3c;">
-                    <div class="event-image" style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.4), rgba(231, 76, 60, 0.2));">
-                        <div style="font-size: 5rem;">🙏</div>
-                    </div>
+                <div class="event-card fade-in" style="border-top:4px solid #e74c3c;">
+                    <div class="event-image" style="background:linear-gradient(135deg,rgba(231,76,60,0.4),rgba(231,76,60,0.2));"><div style="font-size:5rem;">🙏</div></div>
                     <div class="event-content">
-                        <div class="event-date" style="background: #e74c3c; color: white; display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;">ONGOING</div>
-                        <h3 style="font-size: 1.6rem;">Prayer & Intercession</h3>
+                        <div style="background:#e74c3c;color:white;display:inline-block;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;margin-bottom:1rem;font-weight:600;letter-spacing:1px;">ONGOING</div>
+                        <h3 style="font-size:1.6rem;">Prayer & Intercession</h3>
                         <p>Join our dedicated prayer warriors as we seek God's face together. Powerful prayer meetings, fasting sessions, and intercession for revival across Europe and beyond.</p>
                     </div>
                 </div>
@@ -1765,14 +1247,13 @@
         </div>
     </section>
 
-    <!-- News Section -->
+    <!-- News -->
     <section id="news" class="news">
         <div class="section-header fade-in">
             <div class="section-tag">Latest Updates</div>
             <h2 class="section-title">News & Stories</h2>
             <p class="section-description">Stay connected with what's happening in our community.</p>
         </div>
-
         <div class="news-grid">
             <div class="news-card fade-in">
                 <div class="news-image">✝️</div>
@@ -1809,7 +1290,7 @@
         </div>
     </section>
 
-    <!-- Team Section -->
+    <!-- Team -->
     <section id="team" class="team">
         <div class="team-container">
             <div class="section-header fade-in">
@@ -1817,7 +1298,6 @@
                 <h2 class="section-title">Meet Our Team</h2>
                 <p class="section-description">Passionate leaders dedicated to helping you grow in your faith journey.</p>
             </div>
-
             <div class="team-grid">
                 <div class="team-member fade-in">
                     <div class="team-avatar">👤</div>
@@ -1847,37 +1327,25 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="contact">
         <div class="section-header fade-in">
             <div class="section-tag">Get Connected</div>
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-description">Have questions? Want to get involved? Reach out to us today.</p>
         </div>
-
         <div class="contact-content">
             <form class="contact-form fade-in" action="https://formsubmit.co/louisashwin0@gmail.com" method="POST">
-                <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_subject" value="New Contact Form Submission - Bethel Youth United">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="text" name="_honey" style="display:none">
-                
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Your Phone">
-                </div>
-                <div class="form-group">
-                    <textarea rows="6" name="message" placeholder="Your Message" required></textarea>
-                </div>
+                <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+                <div class="form-group"><input type="tel" name="phone" placeholder="Your Phone"></div>
+                <div class="form-group"><textarea rows="6" name="message" placeholder="Your Message" required></textarea></div>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
-
             <div class="contact-info fade-in">
                 <div class="detail-item">
                     <div class="detail-icon">📍</div>
@@ -1897,8 +1365,8 @@
                     <div class="detail-icon">📱</div>
                     <div class="detail-text">
                         <h4>Contact Us</h4>
-                        <p><strong>Sharon Shaju</strong><br><a href="tel:+4915752955791" style="color: var(--primary-green); text-decoration: none;">+49 157 52955791</a></p>
-                        <p style="margin-top: 0.8rem;"><strong>Praise Thomas John</strong><br><a href="tel:+491775841763" style="color: var(--primary-green); text-decoration: none;">+49 177 5841763</a></p>
+                        <p><strong>Sharon Shaju</strong><br><a href="tel:+4915752955791" style="color:var(--primary-green);text-decoration:none;">+49 157 52955791</a></p>
+                        <p style="margin-top:0.8rem;"><strong>Praise Thomas John</strong><br><a href="tel:+491775841763" style="color:var(--primary-green);text-decoration:none;">+49 177 5841763</a></p>
                     </div>
                 </div>
                 <div class="social-links">
@@ -1952,64 +1420,37 @@
     </footer>
 
     <script>
-        // Mobile Navigation Toggle
+        // Mobile nav
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
-
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
+        mobileToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
         });
 
-        // Note: Contact form submission now handled by FormSubmit service
-        // Messages will be automatically sent to louisashwin0@gmail.com
-
-        // Navbar and active navigation
+        // Smooth scroll
         const navbar = document.getElementById('navbar');
         const sections = document.querySelectorAll('section[id]');
         const navLinksAll = document.querySelectorAll('.nav-links a:not(.contact-btn)');
 
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const isMobile = window.innerWidth <= 768;
-                    const offset = isMobile ? 120 : 130;
-                    const targetPosition = target.offsetTop - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    const offset = window.innerWidth <= 768 ? 120 : 130;
+                    window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
                 }
             });
         });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // Fade-in observer
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Carousel Functionality
+        // Carousel
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.indicator');
@@ -2019,56 +1460,23 @@
         let autoPlayInterval;
 
         function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-
-            if (index >= totalSlides) {
-                currentSlide = 0;
-            } else if (index < 0) {
-                currentSlide = totalSlides - 1;
-            } else {
-                currentSlide = index;
-            }
-
+            slides.forEach(s => s.classList.remove('active'));
+            indicators.forEach(i => i.classList.remove('active'));
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
             slides[currentSlide].classList.add('active');
             indicators[currentSlide].classList.add('active');
         }
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+        function startAutoPlay() { autoPlayInterval = setInterval(nextSlide, 5000); }
+        function stopAutoPlay() { clearInterval(autoPlayInterval); }
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(nextSlide, 5000);
-        }
-
-        function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-        }
-
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            stopAutoPlay();
-            startAutoPlay();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            stopAutoPlay();
-            startAutoPlay();
-        });
-
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', () => {
-                const slideIndex = parseInt(indicator.getAttribute('data-slide'));
-                showSlide(slideIndex);
-                stopAutoPlay();
-                startAutoPlay();
-            });
+        nextBtn.addEventListener('click', () => { nextSlide(); stopAutoPlay(); startAutoPlay(); });
+        prevBtn.addEventListener('click', () => { prevSlide(); stopAutoPlay(); startAutoPlay(); });
+        indicators.forEach(ind => {
+            ind.addEventListener('click', () => { showSlide(parseInt(ind.getAttribute('data-slide'))); stopAutoPlay(); startAutoPlay(); });
         });
 
         const carouselSection = document.querySelector('.carousel-section');
@@ -2076,107 +1484,47 @@
         carouselSection.addEventListener('mouseleave', startAutoPlay);
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-                stopAutoPlay();
-                startAutoPlay();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                stopAutoPlay();
-                startAutoPlay();
-            }
+            if (e.key === 'ArrowLeft') { prevSlide(); stopAutoPlay(); startAutoPlay(); }
+            else if (e.key === 'ArrowRight') { nextSlide(); stopAutoPlay(); startAutoPlay(); }
         });
 
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carouselSection.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
+        let touchStartX = 0, touchEndX = 0;
+        carouselSection.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
         carouselSection.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            if (touchEndX < touchStartX - 50) { nextSlide(); stopAutoPlay(); startAutoPlay(); }
+            if (touchEndX > touchStartX + 50) { prevSlide(); stopAutoPlay(); startAutoPlay(); }
         });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) {
-                nextSlide();
-                stopAutoPlay();
-                startAutoPlay();
-            }
-            if (touchEndX > touchStartX + 50) {
-                prevSlide();
-                stopAutoPlay();
-                startAutoPlay();
-            }
-        }
-
         startAutoPlay();
 
-        // Handle window resize
+        // Resize
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                // Close mobile menu on resize to desktop
-                if (window.innerWidth > 768) {
-                    navLinks.classList.remove('active');
-                }
-            }, 250);
+            resizeTimer = setTimeout(() => { if (window.innerWidth > 768) navLinks.classList.remove('active'); }, 250);
         });
 
-        // Prevent zoom on double tap for iOS
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (event) => {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // Optimize scroll performance
+        // Scroll — navbar + active nav + parallax
         let ticking = false;
-        let lastScrollY = window.pageYOffset;
-
         window.addEventListener('scroll', () => {
-            lastScrollY = window.pageYOffset;
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    // Navbar scroll effect
-                    if (lastScrollY > 100) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
-                    }
+                    const scrollY = window.pageYOffset;
+                    navbar.classList.toggle('scrolled', scrollY > 100);
 
-                    // Active navigation link on scroll
                     let current = '';
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop;
-                        const sectionHeight = section.clientHeight;
-                        if (lastScrollY >= (sectionTop - 200)) {
-                            current = section.getAttribute('id');
-                        }
-                    });
-
+                    sections.forEach(section => { if (scrollY >= section.offsetTop - 200) current = section.getAttribute('id'); });
                     navLinksAll.forEach(link => {
                         link.classList.remove('active');
-                        if (link.getAttribute('href').slice(1) === current) {
-                            link.classList.add('active');
-                        }
+                        if (link.getAttribute('href').slice(1) === current) link.classList.add('active');
                     });
 
-                    // Parallax effect
                     const hero = document.querySelector('.hero-content');
                     const heroLogo = document.querySelector('.hero-logo');
-                    
-                    if (hero && heroLogo && lastScrollY < 800) {
-                        hero.style.transform = `translateY(${lastScrollY * 0.3}px)`;
-                        heroLogo.style.transform = `translateY(${lastScrollY * 0.2}px)`;
+                    if (hero && heroLogo && scrollY < 800) {
+                        hero.style.transform = `translateY(${scrollY * 0.3}px)`;
+                        heroLogo.style.transform = `translateY(${scrollY * 0.2}px)`;
                     }
-
                     ticking = false;
                 });
                 ticking = true;
