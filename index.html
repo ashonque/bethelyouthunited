@@ -19,7 +19,6 @@
             --dark-bg: #0a0a0a;
             --light-text: #ffffff;
             --gray-text: #b0b0b0;
-            /* Responsive spacing variables */
             --section-padding-y: clamp(3rem, 8vw, 8rem);
             --section-padding-x: clamp(1rem, 5vw, 3rem);
             --container-max: min(1400px, 95vw);
@@ -346,9 +345,9 @@
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         }
 
-        .carousel-caption-content { 
-            max-width: var(--container-max); 
-            margin: 0 auto; 
+        .carousel-caption-content {
+            max-width: var(--container-max);
+            margin: 0 auto;
         }
 
         .carousel-caption h3 {
@@ -429,14 +428,14 @@
             margin: 0 auto;
         }
 
-        .location, .events, .team {
+        .location, .events, .team, .weekly-update {
             padding: var(--section-padding-y) var(--section-padding-x);
             background: rgba(255,255,255,0.02);
         }
 
-        .section-header { 
-            text-align: center; 
-            margin-bottom: clamp(2rem, 5vw, 4rem); 
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
         }
 
         .section-tag {
@@ -509,8 +508,8 @@
             font-weight: 600;
         }
 
-        .detail-text p { 
-            color: var(--gray-text); 
+        .detail-text p {
+            color: var(--gray-text);
             font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
@@ -562,18 +561,16 @@
 
         .gallery-item:hover img { transform: scale(1.05); }
 
-        /* First item spans on larger screens */
         @media (min-width: 600px) {
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
-            .gallery-item:nth-child(1) { 
-                grid-column: span 2; 
-                grid-row: span 2; 
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
             }
         }
 
-        /* expand icon hint on gallery items */
         .gallery-item::after {
             content: '⛶';
             position: absolute;
@@ -730,10 +727,209 @@
             background: rgba(255,255,255,0.6);
         }
 
+        /* ===== WEEKLY UPDATE / ANNOUNCEMENT SECTION ===== */
+        .weekly-update-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .announcement-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            margin-top: clamp(2rem, 4vw, 3rem);
+        }
+
+        .announcement-poster {
+            position: relative;
+            background: linear-gradient(145deg, rgba(90,147,103,0.15), rgba(10,10,10,0.9));
+            border: 1px solid rgba(90,147,103,0.25);
+            border-radius: 16px;
+            padding: clamp(2rem, 4vw, 3rem);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .announcement-poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--secondary-color), var(--primary-green));
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .announcement-poster:hover {
+            transform: translateY(-5px);
+            border-color: rgba(90,147,103,0.5);
+            box-shadow: 0 15px 40px rgba(90,147,103,0.15);
+        }
+
+        .poster-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-green);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .poster-badge.live {
+            background: #e74c3c;
+        }
+
+        .poster-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+
+        .poster-title {
+            font-size: clamp(1.3rem, 3.5vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .poster-subtitle {
+            color: var(--gray-text);
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .poster-detail-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+        }
+
+        .poster-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .poster-detail-row .detail-label {
+            color: var(--primary-green);
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .poster-detail-row .detail-value {
+            color: var(--gray-text);
+        }
+
+        .poster-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .topic-chip {
+            background: rgba(90,147,103,0.12);
+            border: 1px solid rgba(90,147,103,0.25);
+            color: var(--primary-green);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        .topic-chip:hover {
+            background: rgba(90,147,103,0.25);
+            transform: translateY(-2px);
+        }
+
+        .topic-chip.highlight {
+            background: rgba(243,156,18,0.15);
+            border-color: rgba(243,156,18,0.3);
+            color: var(--secondary-color);
+        }
+
+        .announcement-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .sidebar-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: clamp(1.2rem, 3vw, 1.8rem);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-card:hover {
+            border-color: rgba(90,147,103,0.3);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .sidebar-card h4 {
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-card p {
+            color: var(--gray-text);
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+            line-height: 1.7;
+        }
+
+        .zoom-join-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.7rem 1.3rem;
+            background: #2D8CFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(45,140,255,0.3);
+        }
+
+        .zoom-join-btn:hover {
+            background: #0B5ED7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(45,140,255,0.4);
+        }
+
         /* ===== EVENTS ===== */
-        .events-container { 
-            max-width: var(--container-max); 
-            margin: 0 auto; 
+        .events-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
         }
 
         .events-grid {
@@ -764,8 +960,8 @@
             font-size: clamp(3rem, 8vw, 5rem);
         }
 
-        .event-content { 
-            padding: clamp(1.25rem, 3vw, 2rem); 
+        .event-content {
+            padding: clamp(1.25rem, 3vw, 2rem);
         }
 
         .event-content h3 {
@@ -783,59 +979,114 @@
         /* ===== NEWS ===== */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-            gap: clamp(1.5rem, 3vw, 3rem);
+            grid-template-columns: 1fr;
+            gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: clamp(2rem, 4vw, 4rem);
         }
 
-        .news-card {
+        .conference-news-card {
+            background: linear-gradient(145deg, rgba(243,156,18,0.08), rgba(10,10,10,0.95));
+            border: 1px solid rgba(243,156,18,0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .conference-news-card:hover {
+            border-color: rgba(243,156,18,0.4);
+            box-shadow: 0 12px 35px rgba(243,156,18,0.1);
+        }
+
+        .conference-news-inner {
             display: grid;
-            grid-template-columns: clamp(100px, 20vw, 200px) 1fr;
-            gap: clamp(1rem, 3vw, 2rem);
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: clamp(1rem, 3vw, 2rem);
-            transition: all 0.3s ease;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
 
-        .news-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(90,147,103,0.3);
-        }
-
-        .news-image {
-            background: linear-gradient(135deg, rgba(90,147,103,0.2), rgba(90,147,103,0.05));
-            border-radius: 8px;
+        .conference-news-left {
+            padding: clamp(2rem, 4vw, 3rem);
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-size: clamp(2rem, 5vw, 3rem);
-            min-height: clamp(80px, 15vw, 120px);
         }
 
-        .news-content h3 {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+        .conference-news-left .conf-label {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            width: fit-content;
         }
 
-        .news-date {
+        .conference-news-left h3 {
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            line-height: 1.2;
+        }
+
+        .conference-news-left p {
             color: var(--gray-text);
-            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-            margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
-        }
-
-        .news-content p {
-            color: var(--gray-text);
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
             line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .conference-news-left .conf-note {
+            background: rgba(231,76,60,0.1);
+            border-left: 3px solid #e74c3c;
+            padding: 1rem 1.2rem;
+            border-radius: 0 8px 8px 0;
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+            color: #e74c3c;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .conference-news-right {
+            background: rgba(243,156,18,0.05);
+            padding: clamp(2rem, 4vw, 3rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid rgba(243,156,18,0.1);
+        }
+
+        .schedule-day {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .schedule-day:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-day-name {
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            min-width: 90px;
+        }
+
+        .schedule-day-time {
+            color: var(--gray-text);
             font-size: clamp(0.85rem, 1.8vw, 1rem);
         }
 
         /* ===== TEAM ===== */
-        .team-container { 
-            max-width: var(--container-max); 
-            margin: 0 auto; 
+        .team-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
         }
 
         .team-grid {
@@ -942,6 +1193,113 @@
             gap: clamp(1.5rem, 3vw, 2.5rem);
         }
 
+        /* ===== SOCIAL LINKS (animated) ===== */
+        .social-links {
+            display: flex;
+            gap: clamp(0.8rem, 2vw, 1.2rem);
+            margin-top: clamp(1rem, 2vw, 1.5rem);
+            flex-wrap: wrap;
+        }
+
+        .social-link-animated {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(44px, 10vw, 52px);
+            height: clamp(44px, 10vw, 52px);
+            border-radius: 50%;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .social-link-animated svg {
+            width: clamp(22px, 5vw, 28px);
+            height: clamp(22px, 5vw, 28px);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link-animated::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link-animated:hover svg {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        /* Instagram */
+        .social-instagram {
+            background: rgba(225, 48, 108, 0.1);
+            border: 2px solid rgba(225, 48, 108, 0.3);
+        }
+
+        .social-instagram svg { fill: #E1306C; }
+
+        .social-instagram::before {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-instagram:hover {
+            background: transparent;
+            border-color: transparent;
+            transform: scale(1.15) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(225, 48, 108, 0.4);
+        }
+
+        .social-instagram:hover::before {
+            opacity: 1;
+        }
+
+        .social-instagram:hover svg {
+            fill: white;
+        }
+
+        /* Facebook */
+        .social-facebook {
+            background: rgba(24, 119, 242, 0.1);
+            border: 2px solid rgba(24, 119, 242, 0.3);
+        }
+
+        .social-facebook svg { fill: #1877F2; }
+
+        .social-facebook::before {
+            background: #1877F2;
+        }
+
+        .social-facebook:hover {
+            background: transparent;
+            border-color: transparent;
+            transform: scale(1.15) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
+        }
+
+        .social-facebook:hover::before {
+            opacity: 1;
+        }
+
+        .social-facebook:hover svg {
+            fill: white;
+        }
+
+        /* Social ripple animation */
+        @keyframes socialRipple {
+            0% { box-shadow: 0 0 0 0 rgba(90,147,103,0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(90,147,103,0); }
+            100% { box-shadow: 0 0 0 0 rgba(90,147,103,0); }
+        }
+
+        .social-link-animated.ripple {
+            animation: socialRipple 2s ease infinite;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: rgba(0,0,0,0.5);
@@ -988,30 +1346,11 @@
 
         .footer-links a:hover { color: var(--light-text); }
 
-        .social-links {
+        .footer-social {
             display: flex;
             gap: clamp(0.8rem, 2vw, 1rem);
             margin-top: clamp(1rem, 2vw, 1.5rem);
             flex-wrap: wrap;
-        }
-
-        .social-links a {
-            width: clamp(36px, 8vw, 40px);
-            height: clamp(36px, 8vw, 40px);
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        .social-links a:hover {
-            background: var(--primary-green);
-            transform: translateY(-3px);
         }
 
         .footer-bottom {
@@ -1067,10 +1406,9 @@
            RESPONSIVE BREAKPOINTS
            ============================================== */
 
-        /* ===== MOBILE NAVIGATION (≤ 900px) ===== */
         @media (max-width: 900px) {
             .mobile-toggle { display: flex; }
-            
+
             .nav-links {
                 position: fixed;
                 left: -100%;
@@ -1086,103 +1424,100 @@
                 overflow-y: auto;
                 z-index: 999;
             }
-            
+
             .nav-links.active { left: 0; }
-            
+
             .nav-links li {
                 width: 100%;
                 border-bottom: 1px solid rgba(255,255,255,0.05);
             }
-            
+
             .nav-links li:last-child {
                 border-bottom: none;
                 padding-top: 0.5rem;
             }
-            
-            .nav-links a { 
-                font-size: 1rem; 
-                padding: clamp(0.8rem, 2vw, 1rem) 0; 
-                display: block; 
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: clamp(0.8rem, 2vw, 1rem) 0;
+                display: block;
                 width: 100%;
             }
-            
-            .contact-btn { 
+
+            .contact-btn {
                 width: fit-content;
                 margin-top: 0.5rem;
             }
+
+            .announcement-board {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* ===== TABLET & MOBILE (≤ 768px) ===== */
         @media (max-width: 768px) {
-            /* Hero stacks vertically */
             .hero {
                 flex-direction: column;
                 text-align: center;
                 min-height: auto;
                 padding-top: calc(clamp(3rem, 10vw, 5rem) + 100px);
             }
-            
+
             .hero-content { max-width: 100%; }
             .hero-logo { margin-top: 1rem; }
-            
-            /* News cards stack on small screens */
-            .news-card {
+
+            .conference-news-inner {
                 grid-template-columns: 1fr;
             }
-            
-            .news-image {
-                height: clamp(100px, 20vw, 150px);
+
+            .conference-news-right {
+                border-left: none;
+                border-top: 1px solid rgba(243,156,18,0.1);
             }
-            
-            /* Lightbox arrows inside */
+
             .lightbox-arrow.prev { left: 10px; }
             .lightbox-arrow.next { right: 10px; }
-            .lightbox-arrow { 
-                width: 44px; 
-                height: 44px; 
-                font-size: 1.4rem; 
+            .lightbox-arrow {
+                width: 44px;
+                height: 44px;
+                font-size: 1.4rem;
             }
-            
-            .lightbox-img-wrap { 
-                max-width: 95vw; 
-                max-height: 80vh; 
+
+            .lightbox-img-wrap {
+                max-width: 95vw;
+                max-height: 80vh;
             }
-            
-            .lightbox-img-wrap img { 
-                max-height: 75vh; 
-                border-radius: 8px; 
+
+            .lightbox-img-wrap img {
+                max-height: 75vh;
+                border-radius: 8px;
             }
-            
-            .lightbox-close { 
-                top: 10px; 
-                right: 10px; 
-                width: 40px; 
-                height: 40px; 
+
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
             }
-            
+
             .lightbox-dots { bottom: -32px; }
-            
-            /* Show expand icon always on touch */
+
             .gallery-item::after { opacity: 1; }
         }
 
-        /* ===== SMALL MOBILE (≤ 480px) ===== */
         @media (max-width: 480px) {
-            /* Gallery 2 columns, no span */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .gallery-item:nth-child(1) { 
-                grid-column: span 1; 
-                grid-row: span 1; 
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
             }
-            
-            /* Carousel adjustments */
+
             .carousel-section {
                 height: clamp(250px, 50vh, 350px);
             }
-            
+
             .carousel-controls {
                 bottom: auto;
                 top: 50%;
@@ -1190,40 +1525,37 @@
                 right: 10px;
                 flex-direction: column;
             }
-            
+
             .carousel-btn {
                 width: 36px;
                 height: 36px;
             }
-            
-            /* Event image emoji size */
+
             .event-image div {
                 font-size: clamp(3rem, 12vw, 4rem) !important;
             }
         }
 
-        /* ===== EXTRA SMALL (≤ 360px) ===== */
         @media (max-width: 360px) {
             :root {
                 --section-padding-x: 0.75rem;
             }
-            
+
             .logo-circle {
                 width: 65vw;
                 height: 65vw;
             }
-            
+
             .cross-logo {
                 font-size: 8vw;
             }
-            
+
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
         }
 
-        /* ===== LANDSCAPE ON SHORT SCREENS ===== */
         @media (max-height: 500px) and (orientation: landscape) {
             .hero {
                 min-height: auto;
@@ -1231,32 +1563,31 @@
                 flex-direction: row;
                 text-align: left;
             }
-            
+
             .hero-content { max-width: 55%; }
             .hero-logo { max-width: 45%; margin-top: 0; }
-            
-            .logo-circle { 
-                width: min(180px, 35vh); 
-                height: min(180px, 35vh); 
+
+            .logo-circle {
+                width: min(180px, 35vh);
+                height: min(180px, 35vh);
             }
-            
-            .carousel-section { 
-                height: 70vh; 
-                min-height: 200px; 
+
+            .carousel-section {
+                height: 70vh;
+                min-height: 200px;
             }
-            
-            .nav-links { 
-                max-height: calc(100vh - 80px); 
-                top: 80px; 
+
+            .nav-links {
+                max-height: calc(100vh - 80px);
+                top: 80px;
             }
         }
 
-        /* ===== TOUCH DEVICES - WCAG TAP TARGETS ===== */
         @media (hover: none) and (pointer: coarse) {
-            .nav-links a, 
-            .carousel-btn, 
-            .cta-button, 
-            .contact-btn, 
+            .nav-links a,
+            .carousel-btn,
+            .cta-button,
+            .contact-btn,
             .submit-btn,
             .indicator,
             .gallery-item,
@@ -1266,49 +1597,46 @@
                 min-height: 44px;
                 min-width: 44px;
             }
-            
+
             .nav-links a {
                 display: flex;
                 align-items: center;
             }
-            
-            .indicator { 
-                width: 18px; 
-                height: 18px; 
+
+            .indicator {
+                width: 18px;
+                height: 18px;
             }
-            
-            .indicator.active { 
-                width: 36px; 
+
+            .indicator.active {
+                width: 36px;
             }
-            
-            .lightbox-dot { 
-                width: 14px; 
-                height: 14px; 
+
+            .lightbox-dot {
+                width: 14px;
+                height: 14px;
             }
-            
-            /* Always show expand icon on touch */
+
             .gallery-item::after { opacity: 1; }
         }
 
-        /* ===== LARGE SCREENS (≥ 1600px) ===== */
         @media (min-width: 1600px) {
             :root {
                 --container-max: 1600px;
             }
         }
 
-        /* ===== REDUCED MOTION ===== */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
+
             .ticker-wrapper {
                 animation: none;
             }
-            
+
             .logo-circle, .logo-content {
                 animation: none;
             }
@@ -1322,9 +1650,9 @@
         <div class="ticker-wrapper">
             <span class="ticker-label">📢 LATEST NEWS</span>
             <span class="ticker-content">
-                <strong>THIRD CONFERENCE</strong> happening on May 8, 9, and 10, 2026! 
-                Three days of powerful worship, teaching, and transformation. 
-                Don't miss this life-changing event! 
+                <strong>THIRD CONFERENCE</strong> happening on May 8, 9, and 10, 2026!
+                Three days of powerful worship, teaching, and transformation.
+                Don't miss this life-changing event!
                 Register now and be part of this glorious gathering! 🙏
             </span>
         </div>
@@ -1342,6 +1670,7 @@
                 <li><a href="#mission">About</a></li>
                 <li><a href="#location">Location</a></li>
                 <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#weekly">This Week</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#team">Team</a></li>
@@ -1467,7 +1796,7 @@
                         <div class="detail-icon">📧</div>
                         <div class="detail-text">
                             <h4>Email Us</h4>
-                            <p>info@bethelyouthunited.org<br>youth@bethelyouthunited.org</p>
+                            <p><a href="mailto:byuforchrist@gmail.com" style="color:var(--primary-green);text-decoration:none;">byuforchrist@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -1506,6 +1835,83 @@
         </div>
     </div>
 
+    <!-- ===== THIS WEEK — ANNOUNCEMENT BOARD ===== -->
+    <section id="weekly" class="weekly-update">
+        <div class="weekly-update-container">
+            <div class="section-header fade-in">
+                <div class="section-tag">📖 Every Friday • 8:30 PM (German Time)</div>
+                <h2 class="section-title">This Week at BYU</h2>
+                <p class="section-description">Stay updated with our weekly Bible class topics, quizzes, and special announcements.</p>
+            </div>
+
+            <div class="announcement-board">
+                <!-- Main Poster -->
+                <div class="announcement-poster fade-in">
+                    <div class="poster-badge live"><span class="pulse-dot"></span> This Friday</div>
+                    <h3 class="poster-title">📖 Weekly Bible Class</h3>
+                    <p class="poster-subtitle">Join us this Friday for an engaging Bible study session. Grow in knowledge, ask questions, and deepen your faith together as a family.</p>
+
+                    <div class="poster-detail-row">
+                        <span class="detail-label">📅 When</span>
+                        <span class="detail-value">Friday, 8:30 PM (German Time)</span>
+                    </div>
+                    <div class="poster-detail-row">
+                        <span class="detail-label">📍 Where</span>
+                        <span class="detail-value">Zoom (Online)</span>
+                    </div>
+                    <div class="poster-detail-row">
+                        <span class="detail-label">📚 Topic</span>
+                        <span class="detail-value">To be announced</span>
+                    </div>
+
+                    <div style="margin-top:1.5rem;">
+                        <div style="font-size:clamp(0.85rem,1.8vw,0.95rem);font-weight:600;margin-bottom:0.8rem;color:var(--light-text);">What to Expect:</div>
+                        <div class="poster-topics">
+                            <span class="topic-chip">Bible Study</span>
+                            <span class="topic-chip">Worship</span>
+                            <span class="topic-chip">Prayer</span>
+                            <span class="topic-chip">Fellowship</span>
+                            <span class="topic-chip highlight">Bible Quiz</span>
+                        </div>
+                    </div>
+
+                    <a href="https://us06web.zoom.us/j/85421151544?pwd=TjNYd080NitrRWhwOWdwUTN1c2kyQT09" target="_blank" rel="noopener noreferrer" class="zoom-join-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M8 10v4l3.5-2L8 10zm6 0v4l3.5-2L14 10z" fill="#2D8CFF"/></svg>
+                        Join Zoom Meeting
+                    </a>
+                </div>
+
+                <!-- Sidebar Cards -->
+                <div class="announcement-sidebar">
+                    <div class="sidebar-card fade-in">
+                        <h4>🎯 Bible Quiz</h4>
+                        <p>Test your knowledge! Our interactive Bible quiz sessions are a fun way to learn and grow. Stay tuned for this week's quiz topic and prepare to challenge yourself.</p>
+                    </div>
+                    <div class="sidebar-card fade-in">
+                        <h4>🎤 Special Guest</h4>
+                        <p>We occasionally invite guest speakers to share powerful testimonies and teachings. Follow our Instagram for announcements about upcoming guest speakers!</p>
+                    </div>
+                    <div class="sidebar-card fade-in">
+                        <h4>🔥 Upcoming Highlight</h4>
+                        <p>Third Conference is coming — <strong style="color:var(--secondary-color);">May 8–10, 2026!</strong> Three days of worship, teaching, and divine encounters. Don't miss it!</p>
+                    </div>
+                    <div class="sidebar-card fade-in" style="border-color:rgba(90,147,103,0.3);background:rgba(90,147,103,0.05);">
+                        <h4>📲 Follow Us for Updates</h4>
+                        <p>Get the latest weekly topics, quiz alerts, and guest announcements on our social media.</p>
+                        <div class="social-links" style="margin-top:1rem;">
+                            <a href="https://www.instagram.com/bethel_youth_united/" target="_blank" rel="noopener noreferrer" class="social-link-animated social-instagram ripple" aria-label="Follow us on Instagram">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            </a>
+                            <a href="#" class="social-link-animated social-facebook" aria-label="Follow us on Facebook">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Events -->
     <section id="events" class="events">
         <div class="events-container">
@@ -1532,7 +1938,7 @@
                         <div style="background:var(--primary-green);color:white;display:inline-block;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;margin-bottom:1rem;font-weight:600;letter-spacing:1px;">EVERY FRIDAY • 8:30 PM GERMAN TIME</div>
                         <h3 style="font-size:1.6rem;">Weekly Youth Meetings on Zoom</h3>
                         <p>Join us every Friday for dynamic worship, relevant biblical teaching, and authentic fellowship. Experience God's presence in a powerful way as we gather together as a family.</p>
-                        <a href="https://us06web.zoom.us/j/85421151544?pwd=TjNYd080NitrRWhwOWdwUTN1c2kyQT09" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;padding:0.8rem 1.5rem;background:#2D8CFF;color:white;text-decoration:none;border-radius:8px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 10px rgba(45,140,255,0.3);" onmouseover="this.style.background='#0B5ED7';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#2D8CFF';this.style.transform='translateY(0)'">
+                        <a href="https://us06web.zoom.us/j/85421151544?pwd=TjNYd080NitrRWhwOWdwUTN1c2kyQT09" target="_blank" rel="noopener noreferrer" class="zoom-join-btn" style="margin-top:1rem;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M8 10v4l3.5-2L8 10zm6 0v4l3.5-2L14 10z" fill="#2D8CFF"/></svg>
                             Join Zoom Meeting
                         </a>
@@ -1550,7 +1956,7 @@
         </div>
     </section>
 
-    <!-- News -->
+    <!-- News — Conference Details -->
     <section id="news" class="news">
         <div class="section-header fade-in">
             <div class="section-tag">Latest Updates</div>
@@ -1558,36 +1964,33 @@
             <p class="section-description">Stay connected with what's happening in our community.</p>
         </div>
         <div class="news-grid">
-            <div class="news-card fade-in">
-                <div class="news-image">✝️</div>
-                <div class="news-content">
-                    <h3>Winter Retreat Recap: Lives Transformed</h3>
-                    <div class="news-date">January 25, 2026</div>
-                    <p>Over 80 students encountered God in powerful ways during our winter retreat. Read testimonies and see photos from this incredible weekend.</p>
-                </div>
-            </div>
-            <div class="news-card fade-in">
-                <div class="news-image">🎤</div>
-                <div class="news-content">
-                    <h3>New Worship Team Members Announced</h3>
-                    <div class="news-date">January 20, 2026</div>
-                    <p>We're excited to welcome five new talented musicians to our worship team. Come hear them lead worship this Friday night.</p>
-                </div>
-            </div>
-            <div class="news-card fade-in">
-                <div class="news-image">📚</div>
-                <div class="news-content">
-                    <h3>Small Groups Launch Next Month</h3>
-                    <div class="news-date">January 15, 2026</div>
-                    <p>Starting in February, join a small group to dive deeper into God's Word and build meaningful relationships.</p>
-                </div>
-            </div>
-            <div class="news-card fade-in">
-                <div class="news-image">🌍</div>
-                <div class="news-content">
-                    <h3>Summer Mission Trip Registration Open</h3>
-                    <div class="news-date">January 10, 2026</div>
-                    <p>Join us for a life-changing mission trip to Central America this summer. Limited spots available—register today!</p>
+            <div class="conference-news-card fade-in">
+                <div class="conference-news-inner">
+                    <div class="conference-news-left">
+                        <span class="conf-label">🔥 May 8–10, 2026</span>
+                        <h3>Third Conference — Registration & Details</h3>
+                        <p>Three transformative days of powerful worship, anointed teaching, and divine encounters await you. This is not just an event — it's a moment that can change your life forever.</p>
+                        <p>We are planning accommodation (hotels/hostels) for those who need it. To help us book the right number of rooms, please only register if you truly plan to attend.</p>
+                        <div class="conf-note">⚠️ Please make sure that if you sign up, you actually plan to come, because we are trying to book hotels or hostels for those who need accommodation.</div>
+                    </div>
+                    <div class="conference-news-right">
+                        <h4 style="font-size:clamp(1.1rem,2.5vw,1.3rem);margin-bottom:1.5rem;font-weight:700;">📋 Conference Schedule</h4>
+                        <div class="schedule-day">
+                            <span class="schedule-day-name">Friday</span>
+                            <span class="schedule-day-time">3:00 PM – 6:00 PM</span>
+                        </div>
+                        <div class="schedule-day">
+                            <span class="schedule-day-name">Saturday</span>
+                            <span class="schedule-day-time">9:00 AM – 6:00 PM</span>
+                        </div>
+                        <div class="schedule-day">
+                            <span class="schedule-day-name">Sunday</span>
+                            <span class="schedule-day-time">10:00 AM – 1:00 PM</span>
+                        </div>
+                        <div style="margin-top:1.5rem;padding:1rem;background:rgba(90,147,103,0.1);border-radius:8px;text-align:center;">
+                            <p style="color:var(--primary-green);font-weight:600;font-size:clamp(0.85rem,1.8vw,1rem);">📍 Oberer Hengsbacher Weg 16, 57080 Siegen</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1661,7 +2064,7 @@
                     <div class="detail-icon">📧</div>
                     <div class="detail-text">
                         <h4>Email Us</h4>
-                        <p>info@bethelyouthunited.org<br>youth@bethelyouthunited.org</p>
+                        <p><a href="mailto:byuforchrist@gmail.com" style="color:var(--primary-green);text-decoration:none;">byuforchrist@gmail.com</a></p>
                     </div>
                 </div>
                 <div class="detail-item">
@@ -1672,11 +2075,16 @@
                         <p style="margin-top:0.8rem;"><strong>Praise Thomas John</strong><br><a href="tel:+491775841763" style="color:var(--primary-green);text-decoration:none;">+49 177 5841763</a></p>
                     </div>
                 </div>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">f</a>
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="YouTube">▶️</a>
-                    <a href="#" aria-label="Twitter">🐦</a>
+                <div style="margin-top:0.5rem;">
+                    <h4 style="font-size:clamp(1rem,2vw,1.1rem);margin-bottom:1rem;font-weight:600;">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/bethel_youth_united/" target="_blank" rel="noopener noreferrer" class="social-link-animated social-instagram ripple" aria-label="Follow us on Instagram">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="#" class="social-link-animated social-facebook" aria-label="Follow us on Facebook">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1688,6 +2096,14 @@
             <div class="footer-about">
                 <h3>Bethel Youth United</h3>
                 <p>Empowering the next generation to live out their faith with passion and purpose. Join us as we grow together in Christ and make an impact on the world.</p>
+                <div class="social-links" style="margin-top:1.5rem;">
+                    <a href="https://www.instagram.com/bethel_youth_united/" target="_blank" rel="noopener noreferrer" class="social-link-animated social-instagram" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" class="social-link-animated social-facebook" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
@@ -1723,7 +2139,7 @@
     </footer>
 
     <script>
-        // ===== DYNAMIC NAV-TOP (fits ticker + nav on every device) =====
+        // ===== DYNAMIC NAV-TOP =====
         function setNavTop() {
             const ticker = document.querySelector('.news-ticker');
             const nav    = document.getElementById('navbar');
@@ -1798,7 +2214,6 @@
         carouselSection.addEventListener('mouseleave', startAutoPlay);
 
         document.addEventListener('keydown', (e) => {
-            // only handle arrows when lightbox is closed
             if (lightboxOpen) return;
             if (e.key === 'ArrowLeft') { prevSlide(); stopAutoPlay(); startAutoPlay(); }
             else if (e.key === 'ArrowRight') { nextSlide(); stopAutoPlay(); startAutoPlay(); }
@@ -1822,7 +2237,6 @@
         const lightboxNext   = document.getElementById('lightboxNext');
         const lightboxDots   = document.getElementById('lightboxDots');
 
-        // build the image list in gallery order
         const galleryImages = [];
         galleryItems.forEach(item => {
             const img = item.querySelector('img');
@@ -1832,7 +2246,6 @@
         let currentLightbox = 0;
         let lightboxOpen    = false;
 
-        // create dots
         galleryImages.forEach((_, i) => {
             const dot = document.createElement('span');
             dot.className = 'lightbox-dot' + (i === 0 ? ' active' : '');
@@ -1853,13 +2266,13 @@
             updateDots();
             lightbox.classList.add('active');
             lightboxOpen = true;
-            document.body.style.overflow = 'hidden'; // prevent page scroll
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             lightbox.classList.remove('active');
             lightboxOpen = false;
-            document.body.style.overflow = ''; // restore scroll
+            document.body.style.overflow = '';
         }
 
         function goToLightbox(index) {
@@ -1871,20 +2284,16 @@
             updateDots();
         }
 
-        // click on gallery thumbnail → open
         galleryItems.forEach((item, i) => {
             item.addEventListener('click', () => openLightbox(i));
         });
 
-        // close button
         lightboxClose.addEventListener('click', closeLightbox);
 
-        // click on the dark background → close
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeLightbox();
         });
 
-        // prev / next buttons
         lightboxPrev.addEventListener('click', (e) => {
             e.stopPropagation();
             goToLightbox(currentLightbox - 1);
@@ -1894,7 +2303,6 @@
             goToLightbox(currentLightbox + 1);
         });
 
-        // keyboard nav when lightbox is open
         document.addEventListener('keydown', (e) => {
             if (!lightboxOpen) return;
             if (e.key === 'Escape')     closeLightbox();
@@ -1902,7 +2310,6 @@
             if (e.key === 'ArrowRight') goToLightbox(currentLightbox + 1);
         });
 
-        // touch-swipe inside lightbox
         let lbTouchStartX = 0;
         lightbox.addEventListener('touchstart', (e) => { lbTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
         lightbox.addEventListener('touchend', (e) => {
@@ -1918,7 +2325,7 @@
             resizeTimer = setTimeout(() => { if (window.innerWidth > 900) navLinks.classList.remove('active'); }, 250);
         });
 
-        // ===== SCROLL — navbar + active nav + parallax =====
+        // ===== SCROLL =====
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
@@ -1936,8 +2343,8 @@
                     const hero     = document.querySelector('.hero-content');
                     const heroLogo = document.querySelector('.hero-logo');
                     if (hero && heroLogo && scrollY < 800) {
-                        hero.style.transform     = `translateY(${scrollY * 0.3}px)`;
-                        heroLogo.style.transform = `translateY(${scrollY * 0.2}px)`;
+                        hero.style.transform     = 'translateY(' + scrollY * 0.3 + 'px)';
+                        heroLogo.style.transform = 'translateY(' + scrollY * 0.2 + 'px)';
                     }
                     ticking = false;
                 });
