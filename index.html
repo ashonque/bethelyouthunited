@@ -13,17 +13,18 @@
     <meta name="author" content="Bethel Youth United">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#5a9367">
+    <link rel="canonical" href="https://bethelyouthunited.com/" />
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <meta property="og:title" content="Bethel Youth United | Indian Pentecostal Church Germany">
     <meta property="og:description" content="A Kerala Pentecostal youth community based in Germany. Experience Malayalam worship, prayer, and Indian Christian fellowship!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bethelyouthunited.com/">
-    
-    <script type="application/ld+json">
+    <meta property="og:image" content="https://bethelyouthunited.com/main.jpg"> <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -256,16 +257,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: calc(clamp(4rem, 12vw, 6rem) + 52px) var(--section-padding-x) clamp(2rem, 5vw, 3rem);
+            padding: calc(clamp(4rem, 12vw, 6rem) + 80px) var(--section-padding-x) clamp(3rem, 6vw, 5rem);
             max-width: var(--container-max);
             margin: 0 auto;
-            gap: clamp(1.5rem, 4vw, 3rem);
+            gap: clamp(2rem, 5vw, 4rem);
         }
 
         .hero-content {
             flex: 1;
             max-width: 600px;
             animation: fadeInLeft 1s ease;
+            z-index: 2; /* Ensures text is always readable */
         }
 
         .hero-content h1 {
@@ -279,7 +281,7 @@
         .hero-content .verse {
             color: var(--gray-text);
             font-size: clamp(0.9rem, 2vw, 1.1rem);
-            font-style: italic;
+            font-style: normal; /* Made straight as requested */
             margin-top: clamp(1rem, 3vw, 2rem);
         }
 
@@ -289,11 +291,12 @@
             align-items: center;
             justify-content: center;
             animation: fadeInRight 1s ease;
+            min-height: 300px; /* Prevents collapsing */
         }
 
         .logo-circle {
-            width: clamp(200px, 40vw, 500px);
-            height: clamp(200px, 40vw, 500px);
+            width: clamp(220px, 40vw, 450px);
+            height: clamp(220px, 40vw, 450px);
             border: 2px solid rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
@@ -301,6 +304,7 @@
             justify-content: center;
             position: relative;
             animation: rotate 30s linear infinite;
+            margin: 0 auto;
         }
 
         .logo-circle::before {
@@ -319,7 +323,7 @@
         }
 
         .cross-logo {
-            font-size: clamp(2rem, 8vw, 8rem);
+            font-size: clamp(2rem, 8vw, 7rem);
             font-weight: 900;
             position: relative;
             margin-bottom: 1rem;
@@ -331,12 +335,12 @@
             top: clamp(-0.8rem, -2vw, -2rem);
             left: 50%;
             transform: translateX(-50%);
-            font-size: clamp(1.5rem, 6vw, 6rem);
+            font-size: clamp(1.5rem, 6vw, 5.5rem);
             opacity: 0.3;
         }
 
         .logo-subtext {
-            font-size: clamp(0.7rem, 2vw, 1.2rem);
+            font-size: clamp(0.7rem, 2vw, 1.1rem);
             letter-spacing: clamp(2px, 0.5vw, 4px);
             margin-top: 0.5rem;
             opacity: 0.8;
@@ -368,6 +372,8 @@
             height: clamp(300px, 60vh, 70vh);
             overflow: hidden;
             background: #000;
+            z-index: 5; /* Ensures it stacks properly below hero */
+            margin-top: 2rem;
         }
 
         .carousel-container {
@@ -692,9 +698,10 @@
         }
 
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; min-height: auto; padding-top: calc(clamp(3rem, 10vw, 5rem) + 100px); }
+            .hero { flex-direction: column; text-align: center; min-height: auto; padding-top: calc(clamp(3rem, 10vw, 5rem) + 120px); padding-bottom: 3rem; gap: 3rem; }
+            .hero-logo { min-height: auto; }
             .hero-content { max-width: 100%; }
-            .hero-logo { margin-top: 1rem; }
+            .logo-circle { width: clamp(250px, 60vw, 380px); height: clamp(250px, 60vw, 380px); }
             .conference-news-right { border-left: none; border-top: 1px solid rgba(243,156,18,0.1); }
             .lightbox-arrow.prev { left: 10px; }
             .lightbox-arrow.next { right: 10px; }
@@ -709,7 +716,7 @@
         @media (max-width: 480px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             .gallery-item:nth-child(1) { grid-column: span 1; grid-row: span 1; }
-            .carousel-section { height: clamp(250px, 50vh, 350px); }
+            .carousel-section { height: clamp(250px, 50vh, 350px); margin-top: 0; }
             .carousel-controls { bottom: auto; top: 50%; transform: translateY(-50%); right: 10px; flex-direction: column; }
             .carousel-btn { width: 36px; height: 36px; }
             .event-image div { font-size: clamp(3rem, 12vw, 4rem) !important; }
@@ -717,7 +724,7 @@
 
         @media (max-width: 360px) {
             :root { --section-padding-x: 0.75rem; }
-            .logo-circle { width: 65vw; height: 65vw; }
+            .logo-circle { width: 75vw; height: 75vw; }
             .cross-logo { font-size: 8vw; }
         }
 
@@ -801,25 +808,25 @@
     <section class="carousel-section">
         <div class="carousel-container">
             <div class="carousel-slide active" data-slide="0">
-                <img src="fi.JPEG" alt="Worship and Praise">
+                <img src="fi.JPEG" alt="Kerala Pentecostal Worship Germany">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Worship & Praise</h3>
-                        <p>Experience powerful worship that brings you closer to God. Every Friday night, we gather to lift our voices in praise and encounter His presence.</p>
+                        <p>Experience powerful Malayalam worship that brings you closer to God. Every Friday night, we gather to lift our voices in praise and encounter His presence.</p>
                     </div>
                 </div>
             </div>
             <div class="carousel-slide" data-slide="1">
-                <img src="fift.JPEG" alt="Community and Fellowship">
+                <img src="fift.JPEG" alt="Indian Christian Fellowship Europe">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Community & Fellowship</h3>
-                        <p>Build lasting friendships and grow together in faith. Our youth community is a place where you truly belong and are loved for who you are.</p>
+                        <p>Build lasting friendships and grow together in faith. Our Indian Christian youth community is a place where you truly belong and are loved.</p>
                     </div>
                 </div>
             </div>
             <div class="carousel-slide" data-slide="2">
-                <img src="fo.jpeg" alt="Serving Together">
+                <img src="fo.jpeg" alt="Serving Together Pentecostal Church">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Serving Together</h3>
@@ -828,7 +835,7 @@
                 </div>
             </div>
             <div class="carousel-slide" data-slide="3">
-                <img src="six.jpeg" alt="Growing in Faith">
+                <img src="six.jpeg" alt="Malayalam Bible Study Germany">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content">
                         <h3>Growing in Faith</h3>
@@ -920,7 +927,7 @@
                 </div>
             </div>
             <div class="map-container fade-in">
-                <img src="vi.jpg" alt="Bethel Church Location">
+                <img src="vi.jpg" alt="Bethel Indian Pentecostal Church Location Germany">
             </div>
         </div>
     </section>
@@ -931,13 +938,13 @@
             <h2 class="section-title">Gallery</h2>
         </div>
         <div class="gallery-grid" id="galleryGrid">
-            <div class="gallery-item fade-in" data-index="0"><img src="p.jpg"    alt="Bethel Church"></div>
-            <div class="gallery-item fade-in" data-index="1"><img src="main.jpg" alt="Church Fellowship"></div>
-            <div class="gallery-item fade-in" data-index="2"><img src="C.jpg"    alt="Worship Service"></div>
-            <div class="gallery-item fade-in" data-index="3"><img src="se.JPEG"  alt="Youth Gathering"></div>
-            <div class="gallery-item fade-in" data-index="4"><img src="H.jpg"    alt="Community"></div>
-            <div class="gallery-item fade-in" data-index="5"><img src="ber.jpg"  alt="Church Event"></div>
-            <div class="gallery-item fade-in" data-index="6"><img src="we.jpg"   alt="Fellowship"></div>
+            <div class="gallery-item fade-in" data-index="0"><img src="p.jpg"    alt="Kerala Pentecostal Church Community"></div>
+            <div class="gallery-item fade-in" data-index="1"><img src="main.jpg" alt="Indian Church Fellowship Germany"></div>
+            <div class="gallery-item fade-in" data-index="2"><img src="C.jpg"    alt="Malayalam Worship Service"></div>
+            <div class="gallery-item fade-in" data-index="3"><img src="se.JPEG"  alt="Pentecostal Youth Gathering"></div>
+            <div class="gallery-item fade-in" data-index="4"><img src="H.jpg"    alt="Kerala Believers Germany"></div>
+            <div class="gallery-item fade-in" data-index="5"><img src="ber.jpg"  alt="Indian Christian Event"></div>
+            <div class="gallery-item fade-in" data-index="6"><img src="we.jpg"   alt="Malayali Christian Life Europe"></div>
         </div>
     </section>
 
