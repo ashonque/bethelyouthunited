@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    
+
     <title>Bethel Youth United | Kerala Pentecostal Youth Ministry Germany</title>
-    
+
     <meta name="description" content="Bethel Youth United (BYU) is a Kerala Pentecostal youth ministry under B.I.P.C. in Siegen, Germany. Join our Indian Christian community for Malayalam worship, Bible study, and fellowship.">
-    
+
     <meta name="keywords" content="Kerala Pentecostal Germany, Indian Pentecostal church Germany, Malayalam church Germany, Kerala Christian community Germany, Pentecostal Malayali Germany, Indian church in Germany Malayalam, Kerala believers Germany, Pentecostal fellowship Germany Indian, Kerala Pentecostal church Frankfurt, Malayalam church Berlin, Indian Pentecostal church Munich, Kerala church NRW Germany, Malayalam prayer group Germany, Indian Christian community Hessen, Pentecostal church near me Germany Indian, Pentecostal worship Malayalam, Malayalam Christian prayer Germany, Kerala Pentecostal worship songs, Holy Spirit Pentecostal India Germany, Malayalam Bible study Germany, Fasting prayer Kerala Pentecostal, Pentecostal testimony Malayalam, Kerala Pentecostal lifestyle abroad, Malayali Christian life Germany, Indian Christian traditions Germany, Kerala Pentecostal dress code, Malayalam Christian family life Europe, Cultural differences Kerala Pentecostal Germany, Kerala Pentecostal vlog Germany, Malayali Christian vlog Europe, Indian church life Germany video, Malayalam sermon Germany, Kerala Pentecostal experience abroad, Life of Indian Christians in Germany">
-    
+
     <meta name="author" content="Bethel Youth United">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#5a9367">
     <link rel="canonical" href="https://bethelyouthunited.com/" />
-    
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    
+
     <meta property="og:title" content="Bethel Youth United | Indian Pentecostal Church Germany">
     <meta property="og:description" content="A Kerala Pentecostal youth community based in Germany. Experience Malayalam worship, prayer, and Indian Christian fellowship!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bethelyouthunited.com/">
-    <meta property="og:image" content="https://bethelyouthunited.com/main.jpg"> <script type="application/ld+json">
+    <meta property="og:image" content="https://bethelyouthunited.com/main.jpg">
+
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -77,7 +79,250 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        body.welcome-active {
+            overflow: hidden;
+        }
+
         img { max-width: 100%; height: auto; }
+
+        /* =====================================================
+           WELCOME OVERLAY (first-visit only)
+        ===================================================== */
+        .welcome-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(10,10,10,0.92) 0%, rgba(0,0,0,0.97) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: opacity 0.6s ease;
+        }
+
+        .welcome-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Decorative glowing particles */
+        .welcome-overlay::before,
+        .welcome-overlay::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        .welcome-overlay::before {
+            background: radial-gradient(circle, var(--primary-green), transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: welcomeFloat1 8s ease-in-out infinite;
+        }
+        .welcome-overlay::after {
+            background: radial-gradient(circle, var(--secondary-color), transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation: welcomeFloat2 10s ease-in-out infinite;
+        }
+
+        @keyframes welcomeFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 60px) scale(1.2); }
+        }
+        @keyframes welcomeFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-60px, -60px) scale(1.2); }
+        }
+
+        .welcome-card {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3.5rem);
+            background: linear-gradient(135deg, rgba(90,147,103,0.12), rgba(10,10,10,0.85));
+            border: 1px solid rgba(243,156,18,0.3);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.6),
+                0 0 60px rgba(243,156,18,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+            transform: scale(0.7) translateY(30px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, opacity 0.6s ease 0.15s;
+        }
+
+        .welcome-overlay.visible .welcome-card {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Gradient border top accent */
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--secondary-color), var(--primary-green));
+            background-size: 200% 100%;
+            border-radius: 20px 20px 0 0;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .welcome-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .welcome-close:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .welcome-cross {
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            color: var(--secondary-color);
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            animation: crossGlow 2.5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(243,156,18,0.5);
+        }
+
+        @keyframes crossGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(243,156,18,0.4); transform: scale(1); }
+            50% { text-shadow: 0 0 40px rgba(243,156,18,0.8), 0 0 60px rgba(90,147,103,0.4); transform: scale(1.08); }
+        }
+
+        .welcome-label {
+            display: inline-block;
+            font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-green);
+            margin-bottom: 1.2rem;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid rgba(90,147,103,0.3);
+            border-radius: 30px;
+            background: rgba(90,147,103,0.08);
+        }
+
+        .welcome-verse {
+            font-size: clamp(1rem, 2.6vw, 1.5rem);
+            line-height: 1.7;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+
+        .welcome-verse::before,
+        .welcome-verse::after {
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 0;
+            opacity: 0.7;
+        }
+        .welcome-verse::before { content: '" '; }
+        .welcome-verse::after { content: ' "'; }
+
+        .welcome-reference {
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            color: var(--secondary-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .welcome-reference::before {
+            content: '— ';
+        }
+
+        /* Animated Itinerary CTA Button */
+        .welcome-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(90deg, var(--primary-green), #6da879, var(--primary-green));
+            background-size: 200% auto;
+            color: white !important;
+            padding: clamp(0.9rem, 2.2vw, 1.15rem) clamp(1.5rem, 4vw, 2.5rem);
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: clamp(0.85rem, 2vw, 1.05rem);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(90,147,103,0.4), 0 0 0 0 rgba(90,147,103,0.5);
+            animation: ctaShimmer 3s linear infinite, ctaRipple 2s ease-out infinite;
+            transition: transform 0.3s ease;
+            font-family: inherit;
+        }
+
+        .welcome-cta:hover {
+            transform: scale(1.06) translateY(-3px);
+            background-position: right center;
+        }
+
+        .welcome-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .welcome-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        @keyframes ctaShimmer {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes ctaRipple {
+            0% { box-shadow: 0 10px 30px rgba(90,147,103,0.4), 0 0 0 0 rgba(90,147,103,0.5); }
+            70% { box-shadow: 0 10px 30px rgba(90,147,103,0.4), 0 0 0 20px rgba(90,147,103,0); }
+            100% { box-shadow: 0 10px 30px rgba(90,147,103,0.4), 0 0 0 0 rgba(90,147,103,0); }
+        }
+
+        .welcome-hint {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+        }
 
         /* ===== NEWS TICKER ===== */
         .news-ticker {
@@ -205,7 +450,6 @@
             box-shadow: 0 6px 20px rgba(90, 147, 103, 0.6);
         }
 
-        /* B.I.P.C Button in Nav */
         .bipc-btn {
             background: linear-gradient(45deg, var(--secondary-color), #d68910);
             color: white !important;
@@ -250,24 +494,26 @@
             transition: 0.3s;
         }
 
-        /* ===== HERO ===== */
+        /* =====================================================
+           HERO — FIXED: no longer forces 100vh
+           Now sizes naturally to content so carousel can't overlap.
+        ===================================================== */
         .hero {
-            min-height: 100vh;
-            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: calc(clamp(4rem, 12vw, 6rem) + 80px) var(--section-padding-x) clamp(3rem, 6vw, 5rem);
+            padding: calc(clamp(4rem, 12vw, 6rem) + 100px) var(--section-padding-x) clamp(3rem, 6vw, 5rem);
             max-width: var(--container-max);
             margin: 0 auto;
             gap: clamp(2rem, 5vw, 4rem);
         }
 
         .hero-content {
-            flex: 1;
+            flex: 1 1 50%;
             max-width: 600px;
             animation: fadeInLeft 1s ease;
-            z-index: 2; /* Ensures text is always readable */
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content h1 {
@@ -281,22 +527,21 @@
         .hero-content .verse {
             color: var(--gray-text);
             font-size: clamp(0.9rem, 2vw, 1.1rem);
-            font-style: normal; /* Made straight as requested */
+            font-style: normal;
             margin-top: clamp(1rem, 3vw, 2rem);
         }
 
         .hero-logo {
-            flex: 1;
+            flex: 1 1 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: fadeInRight 1s ease;
-            min-height: 300px; /* Prevents collapsing */
         }
 
         .logo-circle {
-            width: clamp(220px, 40vw, 450px);
-            height: clamp(220px, 40vw, 450px);
+            width: clamp(220px, 38vw, 450px);
+            height: clamp(220px, 38vw, 450px);
             border: 2px solid rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
@@ -304,7 +549,7 @@
             justify-content: center;
             position: relative;
             animation: rotate 30s linear infinite;
-            margin: 0 auto;
+            flex-shrink: 0;
         }
 
         .logo-circle::before {
@@ -323,7 +568,7 @@
         }
 
         .cross-logo {
-            font-size: clamp(2rem, 8vw, 7rem);
+            font-size: clamp(2rem, 7vw, 6rem);
             font-weight: 900;
             position: relative;
             margin-bottom: 1rem;
@@ -335,12 +580,12 @@
             top: clamp(-0.8rem, -2vw, -2rem);
             left: 50%;
             transform: translateX(-50%);
-            font-size: clamp(1.5rem, 6vw, 5.5rem);
+            font-size: clamp(1.5rem, 5vw, 5rem);
             opacity: 0.3;
         }
 
         .logo-subtext {
-            font-size: clamp(0.7rem, 2vw, 1.1rem);
+            font-size: clamp(0.7rem, 1.8vw, 1.1rem);
             letter-spacing: clamp(2px, 0.5vw, 4px);
             margin-top: 0.5rem;
             opacity: 0.8;
@@ -365,15 +610,16 @@
             box-shadow: 0 10px 30px rgba(90,147,103,0.3);
         }
 
-        /* ===== CAROUSEL ===== */
+        /* =====================================================
+           CAROUSEL — FIXED: clear block, no parallax interference
+        ===================================================== */
         .carousel-section {
             position: relative;
             width: 100%;
-            height: clamp(300px, 60vh, 70vh);
+            height: clamp(300px, 55vh, 65vh);
             overflow: hidden;
             background: #000;
-            z-index: 5; /* Ensures it stacks properly below hero */
-            margin-top: 2rem;
+            clear: both;
         }
 
         .carousel-container {
@@ -429,7 +675,7 @@
         .indicator.active { background: var(--primary-green); width: clamp(30px, 6vw, 40px); border-radius: 6px; }
         .indicator:hover { background: rgba(255,255,255,0.6); }
 
-        /* ===== SECTIONS - BASE STYLES ===== */
+        /* ===== SECTION BASE ===== */
         .mission, .gallery, .news, .contact { padding: var(--section-padding-y) var(--section-padding-x); max-width: var(--container-max); margin: 0 auto; }
         .location, .events, .weekly-update { padding: var(--section-padding-y) var(--section-padding-x); background: rgba(255,255,255,0.02); }
 
@@ -438,7 +684,7 @@
         .section-title { font-size: clamp(1.5rem, 5vw, 3rem); font-weight: 700; margin-bottom: clamp(1rem, 2vw, 1.5rem); letter-spacing: -1px; }
         .section-description { font-size: clamp(0.95rem, 2vw, 1.2rem); color: var(--gray-text); max-width: 700px; margin: 0 auto; }
 
-        /* ===== ABOUT US (UPDATED & ANIMATED ICONS) ===== */
+        /* ===== ABOUT US ===== */
         .about-container { display: flex; flex-direction: column; gap: clamp(2rem, 5vw, 4rem); margin-top: clamp(1rem, 3vw, 2rem); }
         .about-intro { font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto; color: rgba(255,255,255,0.9); }
         .about-intro p { margin-bottom: 1.2rem; }
@@ -448,7 +694,6 @@
         .about-card { background: linear-gradient(135deg, rgba(90,147,103,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(90,147,103,0.15); padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; text-align: center; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .about-card:hover { transform: translateY(-8px); border-color: var(--primary-green); box-shadow: 0 15px 40px rgba(90,147,103,0.15); }
 
-        /* Icon Animations */
         .animated-svg { width: 50px; height: 50px; margin-bottom: 1rem; fill: var(--secondary-color); }
         .anim-pulse { animation: iconPulse 2s infinite ease-in-out; }
         .anim-float { animation: iconFloat 3s infinite ease-in-out; }
@@ -564,7 +809,7 @@
         .event-content h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: clamp(0.5rem, 1.5vw, 1rem); font-weight: 600; }
         .event-content p { color: var(--gray-text); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1rem); }
 
-        /* ===== NEWS / CONFERENCE / ITINERARY ===== */
+        /* ===== NEWS ===== */
         .news-grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.5rem, 3vw, 2rem); margin-top: clamp(2rem, 4vw, 4rem); }
         .conference-news-card { background: linear-gradient(145deg, rgba(243,156,18,0.08), rgba(10,10,10,0.95)); border: 1px solid rgba(243,156,18,0.2); border-radius: 16px; overflow: hidden; transition: all 0.4s ease; }
         .conference-news-card:hover { border-color: rgba(243,156,18,0.4); box-shadow: 0 12px 35px rgba(243,156,18,0.1); }
@@ -579,8 +824,8 @@
         .schedule-day:last-child { border-bottom: none; }
         .schedule-day-name { color: var(--secondary-color); font-weight: 700; font-size: clamp(0.9rem, 2vw, 1.05rem); min-width: 90px; }
         .schedule-day-time { color: var(--gray-text); font-size: clamp(0.85rem, 1.8vw, 1rem); }
-        
-        /* Awesome Animated Itinerary Button */
+
+        /* Itinerary button — also used by welcome-cta target */
         .itinerary-btn {
             display: inline-flex;
             align-items: center;
@@ -608,10 +853,19 @@
             background-position: right center;
         }
 
+        /* Brief flash highlight when scrolled to from welcome CTA */
+        .itinerary-btn.flash-highlight {
+            animation: shimmerItinerary 3s linear infinite, floatItinerary 3s ease-in-out infinite, btnFlash 1.8s ease 2;
+        }
+
         @keyframes shimmerItinerary { to { background-position: 200% center; } }
-        @keyframes floatItinerary { 
+        @keyframes floatItinerary {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-6px); }
+        }
+        @keyframes btnFlash {
+            0%, 100% { box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4); }
+            50% { box-shadow: 0 8px 40px rgba(231, 76, 60, 1), 0 0 0 8px rgba(231, 76, 60, 0.25); }
         }
 
         /* ===== CONTACT ===== */
@@ -624,14 +878,13 @@
         .submit-btn:hover { background: #4a7d56; transform: translateY(-2px); }
         .contact-info { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.5rem); }
 
-        /* ===== SOCIAL LINKS (animated) ===== */
+        /* ===== SOCIAL LINKS ===== */
         .social-links { display: flex; gap: clamp(0.8rem, 2vw, 1.2rem); margin-top: clamp(1rem, 2vw, 1.5rem); flex-wrap: wrap; }
         .social-link-animated { display: flex; align-items: center; justify-content: center; width: clamp(44px, 10vw, 52px); height: clamp(44px, 10vw, 52px); border-radius: 50%; text-decoration: none; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .social-link-animated svg { width: clamp(22px, 5vw, 28px); height: clamp(22px, 5vw, 28px); position: relative; z-index: 1; transition: transform 0.3s ease; }
         .social-link-animated::before { content: ''; position: absolute; inset: 0; border-radius: 50%; opacity: 0; transition: opacity 0.3s ease; }
         .social-link-animated:hover svg { transform: scale(1.15) rotate(-5deg); }
 
-        /* Instagram */
         .social-instagram { background: rgba(225, 48, 108, 0.1); border: 2px solid rgba(225, 48, 108, 0.3); }
         .social-instagram svg { fill: #E1306C; }
         .social-instagram::before { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
@@ -639,7 +892,6 @@
         .social-instagram:hover::before { opacity: 1; }
         .social-instagram:hover svg { fill: white; }
 
-        /* YouTube */
         .social-youtube { background: rgba(255, 0, 0, 0.1); border: 2px solid rgba(255, 0, 0, 0.3); }
         .social-youtube svg { fill: #FF0000; }
         .social-youtube::before { background: linear-gradient(45deg, #ff0000, #cc0000); }
@@ -647,7 +899,6 @@
         .social-youtube:hover::before { opacity: 1; }
         .social-youtube:hover svg { fill: white; }
 
-        /* Facebook */
         .social-facebook { background: rgba(24, 119, 242, 0.1); border: 2px solid rgba(24, 119, 242, 0.3); }
         .social-facebook svg { fill: #1877F2; }
         .social-facebook::before { background: #1877F2; }
@@ -678,7 +929,9 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* RESPONSIVE */
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
         @media (max-width: 1050px) {
             .nav-links { gap: clamp(1rem, 1.5vw, 1.5rem); }
         }
@@ -697,11 +950,19 @@
             .contact-btn, .bipc-btn { width: fit-content; margin-top: 0.5rem; }
         }
 
+        /* MOBILE HERO — FIXED */
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; min-height: auto; padding-top: calc(clamp(3rem, 10vw, 5rem) + 120px); padding-bottom: 3rem; gap: 3rem; }
-            .hero-logo { min-height: auto; }
-            .hero-content { max-width: 100%; }
-            .logo-circle { width: clamp(250px, 60vw, 380px); height: clamp(250px, 60vw, 380px); }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: calc(clamp(3rem, 10vw, 5rem) + 120px);
+                padding-bottom: clamp(2rem, 5vw, 3rem);
+                gap: 2.5rem;
+            }
+            .hero-content { max-width: 100%; flex: none; }
+            .hero-logo { flex: none; width: 100%; }
+            .logo-circle { width: clamp(220px, 55vw, 340px); height: clamp(220px, 55vw, 340px); margin: 0 auto; }
+
             .conference-news-right { border-left: none; border-top: 1px solid rgba(243,156,18,0.1); }
             .lightbox-arrow.prev { left: 10px; }
             .lightbox-arrow.next { right: 10px; }
@@ -716,30 +977,37 @@
         @media (max-width: 480px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             .gallery-item:nth-child(1) { grid-column: span 1; grid-row: span 1; }
-            .carousel-section { height: clamp(250px, 50vh, 350px); margin-top: 0; }
+            .carousel-section { height: clamp(260px, 50vh, 360px); }
             .carousel-controls { bottom: auto; top: 50%; transform: translateY(-50%); right: 10px; flex-direction: column; }
             .carousel-btn { width: 36px; height: 36px; }
             .event-image div { font-size: clamp(3rem, 12vw, 4rem) !important; }
+
+            .welcome-card { padding: 2rem 1.5rem; }
         }
 
         @media (max-width: 360px) {
             :root { --section-padding-x: 0.75rem; }
-            .logo-circle { width: 75vw; height: 75vw; }
+            .logo-circle { width: 72vw; height: 72vw; }
             .cross-logo { font-size: 8vw; }
         }
 
         @media (max-height: 500px) and (orientation: landscape) {
-            .hero { min-height: auto; padding-top: calc(2rem + 100px); flex-direction: row; text-align: left; }
-            .hero-content { max-width: 55%; }
-            .hero-logo { max-width: 45%; margin-top: 0; }
+            .hero { padding-top: calc(2rem + 100px); flex-direction: row; text-align: left; }
+            .hero-content { max-width: 55%; flex: 1; }
+            .hero-logo { max-width: 45%; flex: 1; }
             .logo-circle { width: min(180px, 35vh); height: min(180px, 35vh); }
             .carousel-section { height: 70vh; min-height: 200px; }
             .nav-links { max-height: calc(100vh - 80px); top: 80px; }
+
+            .welcome-card { padding: 1.5rem 2rem; }
+            .welcome-cross { font-size: 2rem; margin-bottom: 0.4rem; }
+            .welcome-verse { font-size: 1rem; margin-bottom: 0.6rem; }
         }
 
         @media (hover: none) and (pointer: coarse) {
             .nav-links a, .carousel-btn, .cta-button, .contact-btn, .submit-btn,
-            .indicator, .gallery-item, .lightbox-arrow, .lightbox-close, .lightbox-dot { min-height: 44px; min-width: 44px; }
+            .indicator, .gallery-item, .lightbox-arrow, .lightbox-close, .lightbox-dot,
+            .welcome-close, .welcome-cta { min-height: 44px; min-width: 44px; }
             .nav-links a { display: flex; align-items: center; }
             .indicator { width: 18px; height: 18px; }
             .indicator.active { width: 36px; }
@@ -757,6 +1025,29 @@
 </head>
 <body>
 
+    <!-- ===================================================
+         WELCOME OVERLAY (first visit only)
+    =================================================== -->
+    <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeVerse">
+        <div class="welcome-card">
+            <button class="welcome-close" id="welcomeClose" aria-label="Close welcome message">✕</button>
+            <div class="welcome-cross">✝</div>
+            <div class="welcome-label">Welcome & Blessings</div>
+            <p class="welcome-verse" id="welcomeVerse">Praise be to the God and Father of our Lord Jesus Christ, who has blessed us in the heavenly realms with every spiritual blessing in Christ.</p>
+            <span class="welcome-reference">Ephesians 1:3</span>
+            <div>
+                <button type="button" class="welcome-cta" id="welcomeCTA">
+                    <span>BYU Conference Itinerary</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                </button>
+            </div>
+            <span class="welcome-hint">Press ESC or click outside to close</span>
+        </div>
+    </div>
+
+    <!-- News Ticker -->
     <div class="news-ticker">
         <div class="ticker-wrapper">
             <span class="ticker-label">📢 LATEST NEWS</span>
@@ -769,6 +1060,7 @@
         </div>
     </div>
 
+    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Bethel Youth United</a>
@@ -789,6 +1081,7 @@
         </div>
     </nav>
 
+    <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.</h1>
@@ -805,6 +1098,7 @@
         </div>
     </section>
 
+    <!-- Carousel -->
     <section class="carousel-section">
         <div class="carousel-container">
             <div class="carousel-slide active" data-slide="0">
@@ -856,12 +1150,13 @@
         </div>
     </section>
 
+    <!-- About Us -->
     <section id="mission" class="mission">
         <div class="section-header fade-in">
             <div class="section-tag">Who We Are</div>
             <h2 class="section-title">About Us</h2>
         </div>
-        
+
         <div class="about-container">
             <div class="about-intro fade-in">
                 <p><strong>Bethel Youth United (BYU)</strong>, under the Bethel International Pentecostal Church (B.I.P.C.), Germany, is led by <strong>Brother Sharon Shaju</strong>.</p>
@@ -876,7 +1171,7 @@
                     <h4>Our Mission</h4>
                     <p>We are passionate about loving God and loving people. It is the foundation of our faith. <em>"Love the Lord your God with all your heart... and your neighbor as yourself."</em> (Matthew 22:37-39)</p>
                 </div>
-                
+
                 <div class="about-card fade-in">
                     <svg class="animated-svg anim-float" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
@@ -905,6 +1200,7 @@
         </div>
     </section>
 
+    <!-- Location -->
     <section id="location" class="location">
         <div class="location-content">
             <div class="location-info fade-in">
@@ -932,6 +1228,7 @@
         </div>
     </section>
 
+    <!-- Gallery -->
     <section id="gallery" class="gallery">
         <div class="section-header fade-in">
             <div class="section-tag">Our Community</div>
@@ -948,6 +1245,7 @@
         </div>
     </section>
 
+    <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox">
         <div class="lightbox-img-wrap">
             <img src="" alt="Full size" id="lightboxImg">
@@ -958,6 +1256,7 @@
         </div>
     </div>
 
+    <!-- This Week -->
     <section id="weekly" class="weekly-update">
         <div class="weekly-update-container">
             <div class="section-header fade-in">
@@ -1035,6 +1334,7 @@
         </div>
     </section>
 
+    <!-- Events -->
     <section id="events" class="events">
         <div class="events-container">
             <div class="section-header fade-in">
@@ -1078,6 +1378,7 @@
         </div>
     </section>
 
+    <!-- News & Stories -->
     <section id="news" class="news">
         <div class="section-header fade-in">
             <div class="section-tag">Latest Updates</div>
@@ -1093,8 +1394,8 @@
                         <p>Three transformative days of powerful worship, anointed teaching, and divine encounters await you. This is not just an event — it's a moment that can change your life forever.</p>
                         <p>We are planning accommodation (hotels/hostels) for those who need it. To help us book the right number of rooms, please only register if you truly plan to attend.</p>
                         <div class="conf-note">⚠️ Please make sure that if you sign up, you actually plan to come, because we are trying to book hotels or hostels for those who need accommodation.</div>
-                        
-                        <a href="itinerary.pdf" target="_blank" class="itinerary-btn">
+
+                        <a href="itinerary.pdf" target="_blank" class="itinerary-btn" id="itineraryBtn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z"/>
                             </svg>
@@ -1124,6 +1425,7 @@
         </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="contact">
         <div class="section-header fade-in">
             <div class="section-tag">Get Connected</div>
@@ -1182,6 +1484,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-about">
@@ -1232,7 +1535,84 @@
     </footer>
 
     <script>
-        // ===== DYNAMIC NAV-TOP =====
+        // =====================================================
+        // WELCOME OVERLAY — show only on first visit per session
+        // =====================================================
+        (function() {
+            const welcomeOverlay = document.getElementById('welcomeOverlay');
+            const welcomeClose = document.getElementById('welcomeClose');
+            const welcomeCTA = document.getElementById('welcomeCTA');
+            const itineraryBtn = document.getElementById('itineraryBtn');
+
+            // Check sessionStorage — it clears when the tab/browser closes,
+            // but survives page navigation within the same session.
+            // Reloads keep the same session, so the overlay won't re-appear on reload.
+            let hasSeenWelcome = false;
+            try {
+                hasSeenWelcome = sessionStorage.getItem('byu_welcome_seen') === 'true';
+            } catch (e) {
+                // sessionStorage may be blocked (private mode, etc.) — fall back to showing once per page load
+                hasSeenWelcome = window.__byuWelcomeSeen === true;
+            }
+
+            function closeWelcome() {
+                welcomeOverlay.classList.remove('visible');
+                document.body.classList.remove('welcome-active');
+                try { sessionStorage.setItem('byu_welcome_seen', 'true'); } catch (e) { window.__byuWelcomeSeen = true; }
+                // Allow clicks through after fade completes
+                setTimeout(() => {
+                    welcomeOverlay.style.display = 'none';
+                }, 700);
+            }
+
+            function showWelcome() {
+                document.body.classList.add('welcome-active');
+                welcomeOverlay.classList.add('visible');
+            }
+
+            if (!hasSeenWelcome) {
+                // Wait 2 seconds after page load
+                setTimeout(showWelcome, 2000);
+            } else {
+                welcomeOverlay.style.display = 'none';
+            }
+
+            // Close button
+            welcomeClose.addEventListener('click', closeWelcome);
+
+            // Click outside the card to close
+            welcomeOverlay.addEventListener('click', (e) => {
+                if (e.target === welcomeOverlay) closeWelcome();
+            });
+
+            // ESC key to close
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && welcomeOverlay.classList.contains('visible')) {
+                    closeWelcome();
+                }
+            });
+
+            // CTA button → close overlay, scroll to itinerary button, flash-highlight it
+            welcomeCTA.addEventListener('click', () => {
+                closeWelcome();
+                setTimeout(() => {
+                    if (itineraryBtn) {
+                        const rect = itineraryBtn.getBoundingClientRect();
+                        const offset = window.innerWidth <= 768 ? 140 : 150;
+                        window.scrollTo({
+                            top: window.pageYOffset + rect.top - offset,
+                            behavior: 'smooth'
+                        });
+                        itineraryBtn.classList.add('flash-highlight');
+                        setTimeout(() => itineraryBtn.classList.remove('flash-highlight'), 4000);
+                    }
+                }, 500);
+            });
+        })();
+
+        // =====================================================
+        // DYNAMIC NAV TOP
+        // =====================================================
         function setNavTop() {
             const ticker = document.querySelector('.news-ticker');
             const nav    = document.getElementById('navbar');
@@ -1243,7 +1623,7 @@
         setNavTop();
         window.addEventListener('resize', setNavTop);
 
-        // ===== MOBILE NAV =====
+        // MOBILE NAV
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
         mobileToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); setNavTop(); });
@@ -1251,15 +1631,17 @@
             link.addEventListener('click', () => navLinks.classList.remove('active'));
         });
 
-        // ===== SMOOTH SCROLL =====
+        // SMOOTH SCROLL
         const navbar = document.getElementById('navbar');
         const sections = document.querySelectorAll('section[id]');
         const navLinksAll = document.querySelectorAll('.nav-links a:not(.contact-btn):not(.bipc-btn)');
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     const offset = window.innerWidth <= 768 ? 120 : 130;
                     window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
@@ -1267,13 +1649,15 @@
             });
         });
 
-        // ===== FADE-IN OBSERVER =====
+        // FADE-IN OBSERVER
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // ===== CAROUSEL =====
+        // =====================================================
+        // CAROUSEL
+        // =====================================================
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.indicator');
@@ -1312,16 +1696,21 @@
             else if (e.key === 'ArrowRight') { nextSlide(); stopAutoPlay(); startAutoPlay(); }
         });
 
+        // FIXED touch events (was broken in previous version: e.changedTouches needs [0])
         let touchStartX = 0, touchEndX = 0;
-        carouselSection.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches.screenX; }, { passive: true });
+        carouselSection.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
         carouselSection.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches.screenX;
+            touchEndX = e.changedTouches[0].screenX;
             if (touchEndX < touchStartX - 50) { nextSlide(); stopAutoPlay(); startAutoPlay(); }
             if (touchEndX > touchStartX + 50) { prevSlide(); stopAutoPlay(); startAutoPlay(); }
         });
         startAutoPlay();
 
-        // ===== LIGHTBOX =====
+        // =====================================================
+        // LIGHTBOX
+        // =====================================================
         const galleryItems   = document.querySelectorAll('.gallery-item');
         const lightbox       = document.getElementById('lightbox');
         const lightboxImg    = document.getElementById('lightboxImg');
@@ -1377,24 +1766,11 @@
             updateDots();
         }
 
-        galleryItems.forEach((item, i) => {
-            item.addEventListener('click', () => openLightbox(i));
-        });
-
+        galleryItems.forEach((item, i) => { item.addEventListener('click', () => openLightbox(i)); });
         lightboxClose.addEventListener('click', closeLightbox);
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-
-        lightboxPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            goToLightbox(currentLightbox - 1);
-        });
-        lightboxNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            goToLightbox(currentLightbox + 1);
-        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); goToLightbox(currentLightbox - 1); });
+        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); goToLightbox(currentLightbox + 1); });
 
         document.addEventListener('keydown', (e) => {
             if (!lightboxOpen) return;
@@ -1403,22 +1779,25 @@
             if (e.key === 'ArrowRight') goToLightbox(currentLightbox + 1);
         });
 
+        // FIXED touch events for lightbox (same bug as carousel had)
         let lbTouchStartX = 0;
-        lightbox.addEventListener('touchstart', (e) => { lbTouchStartX = e.changedTouches.screenX; }, { passive: true });
+        lightbox.addEventListener('touchstart', (e) => { lbTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
         lightbox.addEventListener('touchend', (e) => {
-            const diff = e.changedTouches.screenX - lbTouchStartX;
+            const diff = e.changedTouches[0].screenX - lbTouchStartX;
             if (diff < -40) goToLightbox(currentLightbox + 1);
             if (diff >  40) goToLightbox(currentLightbox - 1);
         });
 
-        // ===== RESIZE =====
+        // RESIZE
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => { if (window.innerWidth > 900) navLinks.classList.remove('active'); }, 250);
         });
 
-        // ===== SCROLL =====
+        // =====================================================
+        // SCROLL — FIXED: parallax removed to prevent overlap
+        // =====================================================
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
@@ -1433,12 +1812,11 @@
                         if (link.getAttribute('href').slice(1) === current) link.classList.add('active');
                     });
 
-                    const hero     = document.querySelector('.hero-content');
-                    const heroLogo = document.querySelector('.hero-logo');
-                    if (hero && heroLogo && scrollY < 800) {
-                        hero.style.transform     = 'translateY(' + scrollY * 0.3 + 'px)';
-                        heroLogo.style.transform = 'translateY(' + scrollY * 0.2 + 'px)';
-                    }
+                    // Parallax removed: the `transform: translateY` on .hero-content
+                    // and .hero-logo was causing the logo circle to visually extend
+                    // down into the carousel section. Without it, the hero stays put
+                    // and the carousel sits cleanly below.
+
                     ticking = false;
                 });
                 ticking = true;
