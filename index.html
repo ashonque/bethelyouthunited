@@ -15,17 +15,31 @@
     <meta name="theme-color" content="#5a9367">
     <link rel="canonical" href="https://bethelyouthunited.com/" />
 
+    <!-- FAVICON / LOGO — Google search will use these when it re-indexes your site -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/jpeg" sizes="192x192" href="logo.jpg">
+    <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="logo.jpg">
 
+    <!-- Open Graph / Social Preview -->
     <meta property="og:title" content="Bethel Youth United | Indian Pentecostal Church Germany">
     <meta property="og:description" content="A Kerala Pentecostal youth community based in Germany. Experience Malayalam worship, prayer, and Indian Christian fellowship!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bethelyouthunited.com/">
-    <meta property="og:image" content="https://bethelyouthunited.com/main.jpg">
+    <meta property="og:image" content="https://bethelyouthunited.com/logo.jpg">
+    <meta property="og:image:width" content="540">
+    <meta property="og:image:height" content="510">
+    <meta property="og:site_name" content="Bethel Youth United">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bethel Youth United | Indian Pentecostal Church Germany">
+    <meta name="twitter:description" content="A Kerala Pentecostal youth community based in Germany. Experience Malayalam worship, prayer, and Indian Christian fellowship!">
+    <meta name="twitter:image" content="https://bethelyouthunited.com/logo.jpg">
+
+    <!-- Structured data with logo for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,6 +47,8 @@
       "name": "Bethel Youth United",
       "alternateName": "BYU Indian Pentecostal Church",
       "url": "https://bethelyouthunited.com",
+      "logo": "https://bethelyouthunited.com/logo.jpg",
+      "image": "https://bethelyouthunited.com/logo.jpg",
       "description": "A Kerala Pentecostal youth community under Bethel International Pentecostal Church Germany offering Malayalam worship services and Indian Christian fellowship.",
       "address": {
         "@type": "PostalAddress",
@@ -42,6 +58,10 @@
         "addressCountry": "DE",
         "postalCode": "57080"
       },
+      "sameAs": [
+        "https://www.instagram.com/bethel_youth_united/",
+        "https://www.youtube.com/@BethelYouthUnited"
+      ],
       "parentOrganization": {
         "@type": "Organization",
         "name": "Bethel International Pentecostal Church",
@@ -79,7 +99,8 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        body.welcome-active {
+        body.welcome-active,
+        body.popup-active {
             overflow: hidden;
         }
 
@@ -109,7 +130,6 @@
             pointer-events: auto;
         }
 
-        /* Decorative glowing particles */
         .welcome-overlay::before,
         .welcome-overlay::after {
             content: '';
@@ -166,7 +186,6 @@
             opacity: 1;
         }
 
-        /* Gradient border top accent */
         .welcome-card::before {
             content: '';
             position: absolute;
@@ -235,14 +254,30 @@
             background: rgba(90,147,103,0.08);
         }
 
+        /* Welcome verse — NON-ITALIC with soft glowing animation */
         .welcome-verse {
             font-size: clamp(1rem, 2.6vw, 1.5rem);
             line-height: 1.7;
-            color: rgba(255,255,255,0.95);
-            font-weight: 300;
+            color: #ffffff;
+            font-weight: 400;
             margin-bottom: 1.2rem;
-            font-style: italic;
+            font-style: normal;
             letter-spacing: 0.3px;
+            animation: verseGlow 3.5s ease-in-out infinite;
+        }
+
+        @keyframes verseGlow {
+            0%, 100% {
+                text-shadow:
+                    0 0 10px rgba(243, 156, 18, 0.25),
+                    0 0 20px rgba(243, 156, 18, 0.15);
+            }
+            50% {
+                text-shadow:
+                    0 0 15px rgba(243, 156, 18, 0.4),
+                    0 0 30px rgba(90, 147, 103, 0.25),
+                    0 0 45px rgba(243, 156, 18, 0.15);
+            }
         }
 
         .welcome-verse::before,
@@ -269,7 +304,6 @@
             content: '— ';
         }
 
-        /* Animated Itinerary CTA Button */
         .welcome-cta {
             display: inline-flex;
             align-items: center;
@@ -298,17 +332,10 @@
             background-position: right center;
         }
 
-        .welcome-cta svg {
-            transition: transform 0.3s ease;
-        }
+        .welcome-cta svg { transition: transform 0.3s ease; }
+        .welcome-cta:hover svg { transform: translateX(4px); }
 
-        .welcome-cta:hover svg {
-            transform: translateX(4px);
-        }
-
-        @keyframes ctaShimmer {
-            to { background-position: 200% center; }
-        }
+        @keyframes ctaShimmer { to { background-position: 200% center; } }
 
         @keyframes ctaRipple {
             0% { box-shadow: 0 10px 30px rgba(90,147,103,0.4), 0 0 0 0 rgba(90,147,103,0.5); }
@@ -319,6 +346,180 @@
         .welcome-hint {
             display: block;
             margin-top: 1.5rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+        }
+
+        /* =====================================================
+           ITINERARY POPUP (click "View Conference Itinerary")
+        ===================================================== */
+        .itinerary-popup {
+            position: fixed;
+            inset: 0;
+            z-index: 99998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(10,10,10,0.92) 0%, rgba(0,0,0,0.97) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: opacity 0.5s ease;
+        }
+
+        .itinerary-popup.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .itinerary-popup::before,
+        .itinerary-popup::after {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px);
+            opacity: 0.35;
+        }
+        .itinerary-popup::before {
+            background: radial-gradient(circle, var(--primary-green), transparent 70%);
+            top: -80px; right: -80px;
+            animation: welcomeFloat2 9s ease-in-out infinite;
+        }
+        .itinerary-popup::after {
+            background: radial-gradient(circle, var(--secondary-color), transparent 70%);
+            bottom: -80px; left: -80px;
+            animation: welcomeFloat1 11s ease-in-out infinite;
+        }
+
+        .itinerary-card {
+            position: relative;
+            max-width: 620px;
+            width: 100%;
+            padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3rem);
+            background: linear-gradient(135deg, rgba(90,147,103,0.15), rgba(10,10,10,0.9));
+            border: 1px solid rgba(90,147,103,0.35);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.6),
+                0 0 60px rgba(90,147,103,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+            transform: scale(0.75) translateY(30px);
+            opacity: 0;
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, opacity 0.5s ease 0.1s;
+        }
+
+        .itinerary-popup.visible .itinerary-card {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .itinerary-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--secondary-color), var(--primary-green));
+            background-size: 200% 100%;
+            border-radius: 20px 20px 0 0;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .itinerary-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .itinerary-close:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .itinerary-blessing-icon {
+            width: clamp(60px, 12vw, 85px);
+            height: clamp(60px, 12vw, 85px);
+            margin: 0 auto 1.5rem;
+            display: block;
+            animation: iconPulse 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(243,156,18,0.4));
+        }
+
+        .itinerary-heading {
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 20px rgba(243,156,18,0.3);
+        }
+
+        .itinerary-message {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            line-height: 1.8;
+            color: rgba(255,255,255,0.92);
+            font-style: normal;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .itinerary-message strong {
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .itinerary-btn-close {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(90deg, var(--primary-green), #6da879, var(--primary-green));
+            background-size: 200% auto;
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            animation: ctaShimmer 3s linear infinite;
+            transition: transform 0.3s ease;
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+
+        .itinerary-btn-close:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90,147,103,0.4);
+        }
+
+        .itinerary-hint {
+            display: block;
+            margin-top: 1.2rem;
             font-size: clamp(0.7rem, 1.5vw, 0.8rem);
             color: rgba(255,255,255,0.4);
             letter-spacing: 0.5px;
@@ -494,10 +695,7 @@
             transition: 0.3s;
         }
 
-        /* =====================================================
-           HERO — FIXED: no longer forces 100vh
-           Now sizes naturally to content so carousel can't overlap.
-        ===================================================== */
+        /* ===== HERO ===== */
         .hero {
             display: flex;
             align-items: center;
@@ -610,9 +808,7 @@
             box-shadow: 0 10px 30px rgba(90,147,103,0.3);
         }
 
-        /* =====================================================
-           CAROUSEL — FIXED: clear block, no parallax interference
-        ===================================================== */
+        /* ===== CAROUSEL ===== */
         .carousel-section {
             position: relative;
             width: 100%;
@@ -691,17 +887,94 @@
         .about-intro strong { color: var(--primary-green); }
 
         .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); }
-        .about-card { background: linear-gradient(135deg, rgba(90,147,103,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(90,147,103,0.15); padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; text-align: center; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .about-card:hover { transform: translateY(-8px); border-color: var(--primary-green); box-shadow: 0 15px 40px rgba(90,147,103,0.15); }
+        .about-card {
+            background: linear-gradient(135deg, rgba(90,147,103,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(90,147,103,0.15);
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .about-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-green);
+            box-shadow: 0 15px 40px rgba(90,147,103,0.15);
+        }
 
-        .animated-svg { width: 50px; height: 50px; margin-bottom: 1rem; fill: var(--secondary-color); }
-        .anim-pulse { animation: iconPulse 2s infinite ease-in-out; }
-        .anim-float { animation: iconFloat 3s infinite ease-in-out; }
-        .anim-flicker { animation: iconFlicker 1.5s infinite ease-in-out; }
+        /* ===== NEW ICON CONTAINERS ===== */
+        .about-icon-wrap {
+            width: clamp(70px, 14vw, 90px);
+            height: clamp(70px, 14vw, 90px);
+            margin: 0 auto 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(243,156,18,0.15), rgba(90,147,103,0.05));
+            position: relative;
+        }
 
-        @keyframes iconPulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.15); opacity: 1; fill: var(--primary-green); } }
-        @keyframes iconFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); fill: var(--primary-green); } }
-        @keyframes iconFlicker { 0%, 100% { transform: scale(1) rotate(-2deg); } 50% { transform: scale(1.1) rotate(2deg); fill: var(--primary-green); } }
+        .about-icon-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent, rgba(243,156,18,0.3), transparent);
+            animation: iconHalo 4s linear infinite;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        @keyframes iconHalo {
+            to { transform: rotate(360deg); }
+        }
+
+        .about-icon {
+            width: clamp(40px, 8vw, 52px);
+            height: clamp(40px, 8vw, 52px);
+            fill: var(--secondary-color);
+            position: relative;
+            z-index: 1;
+            transition: fill 0.5s ease;
+        }
+
+        .about-card:hover .about-icon { fill: var(--primary-green); }
+
+        /* Praying hands — gentle pulse like breath */
+        .icon-pray {
+            animation: prayBreath 3s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        @keyframes prayBreath {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.08) translateY(-3px); }
+        }
+
+        /* Family — gentle bounce */
+        .icon-family {
+            animation: familyBounce 2.8s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        @keyframes familyBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.05); }
+        }
+
+        /* Dove — flying wing-flap motion */
+        .icon-dove {
+            animation: doveFly 3.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes doveFly {
+            0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+            25% { transform: translateY(-5px) rotate(2deg) scale(1.04); }
+            50% { transform: translateY(-8px) rotate(-2deg) scale(1.08); }
+            75% { transform: translateY(-5px) rotate(3deg) scale(1.04); }
+        }
 
         .about-card h4 { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--light-text); margin-bottom: 1rem; font-weight: 600; }
         .about-card p { color: var(--gray-text); font-size: clamp(0.9rem, 1.8vw, 1rem); line-height: 1.7; }
@@ -781,6 +1054,9 @@
         .poster-badge.live { background: #e74c3c; }
         .poster-badge .pulse-dot { width: 8px; height: 8px; background: white; border-radius: 50%; animation: pulse 1.5s ease infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+
+        @keyframes iconPulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.1); opacity: 1; } }
+
         .poster-title { font-size: clamp(1.3rem, 3.5vw, 2rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.3; }
         .poster-subtitle { color: var(--gray-text); font-size: clamp(0.9rem, 2vw, 1.05rem); margin-bottom: 1.5rem; line-height: 1.7; }
         .poster-detail-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: clamp(0.85rem, 1.8vw, 1rem); }
@@ -825,7 +1101,6 @@
         .schedule-day-name { color: var(--secondary-color); font-weight: 700; font-size: clamp(0.9rem, 2vw, 1.05rem); min-width: 90px; }
         .schedule-day-time { color: var(--gray-text); font-size: clamp(0.85rem, 1.8vw, 1rem); }
 
-        /* Itinerary button — also used by welcome-cta target */
         .itinerary-btn {
             display: inline-flex;
             align-items: center;
@@ -835,6 +1110,7 @@
             background-size: 200% auto;
             color: white !important;
             padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
+            border: none;
             border-radius: 30px;
             font-weight: 800;
             font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -845,6 +1121,8 @@
             box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
             animation: shimmerItinerary 3s linear infinite, floatItinerary 3s ease-in-out infinite;
             transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
         }
 
         .itinerary-btn:hover {
@@ -853,7 +1131,6 @@
             background-position: right center;
         }
 
-        /* Brief flash highlight when scrolled to from welcome CTA */
         .itinerary-btn.flash-highlight {
             animation: shimmerItinerary 3s linear infinite, floatItinerary 3s ease-in-out infinite, btnFlash 1.8s ease 2;
         }
@@ -929,9 +1206,7 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1050px) {
             .nav-links { gap: clamp(1rem, 1.5vw, 1.5rem); }
         }
@@ -950,7 +1225,6 @@
             .contact-btn, .bipc-btn { width: fit-content; margin-top: 0.5rem; }
         }
 
-        /* MOBILE HERO — FIXED */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -981,8 +1255,7 @@
             .carousel-controls { bottom: auto; top: 50%; transform: translateY(-50%); right: 10px; flex-direction: column; }
             .carousel-btn { width: 36px; height: 36px; }
             .event-image div { font-size: clamp(3rem, 12vw, 4rem) !important; }
-
-            .welcome-card { padding: 2rem 1.5rem; }
+            .welcome-card, .itinerary-card { padding: 2rem 1.5rem; }
         }
 
         @media (max-width: 360px) {
@@ -999,7 +1272,7 @@
             .carousel-section { height: 70vh; min-height: 200px; }
             .nav-links { max-height: calc(100vh - 80px); top: 80px; }
 
-            .welcome-card { padding: 1.5rem 2rem; }
+            .welcome-card, .itinerary-card { padding: 1.5rem 2rem; }
             .welcome-cross { font-size: 2rem; margin-bottom: 0.4rem; }
             .welcome-verse { font-size: 1rem; margin-bottom: 0.6rem; }
         }
@@ -1007,7 +1280,7 @@
         @media (hover: none) and (pointer: coarse) {
             .nav-links a, .carousel-btn, .cta-button, .contact-btn, .submit-btn,
             .indicator, .gallery-item, .lightbox-arrow, .lightbox-close, .lightbox-dot,
-            .welcome-close, .welcome-cta { min-height: 44px; min-width: 44px; }
+            .welcome-close, .welcome-cta, .itinerary-close, .itinerary-btn-close, .itinerary-btn { min-height: 44px; min-width: 44px; }
             .nav-links a { display: flex; align-items: center; }
             .indicator { width: 18px; height: 18px; }
             .indicator.active { width: 36px; }
@@ -1025,9 +1298,7 @@
 </head>
 <body>
 
-    <!-- ===================================================
-         WELCOME OVERLAY (first visit only)
-    =================================================== -->
+    <!-- WELCOME OVERLAY (first visit only) -->
     <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeVerse">
         <div class="welcome-card">
             <button class="welcome-close" id="welcomeClose" aria-label="Close welcome message">✕</button>
@@ -1038,12 +1309,46 @@
             <div>
                 <button type="button" class="welcome-cta" id="welcomeCTA">
                     <span>BYU Conference Itinerary</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
             </div>
             <span class="welcome-hint">Press ESC or click outside to close</span>
+        </div>
+    </div>
+
+    <!-- ITINERARY POPUP (shown when "View Conference Itinerary" clicked) -->
+    <div class="itinerary-popup" id="itineraryPopup" role="dialog" aria-modal="true" aria-labelledby="itineraryHeading">
+        <div class="itinerary-card">
+            <button class="itinerary-close" id="itineraryPopupClose" aria-label="Close message">✕</button>
+            <!-- Blessing hands / dove icon -->
+            <svg class="itinerary-blessing-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <!-- Light ray circle -->
+                <circle cx="32" cy="32" r="28" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.4"/>
+                <!-- Dove body -->
+                <path d="M20 38c-2-1-4-3-4-6 0-4 4-7 8-7 2 0 4 1 5 2 2-3 6-5 10-5 5 0 9 3 9 8 0 3-2 5-4 6l-3 2c0 4-3 7-7 7h-7c-4 0-7-3-7-7z" fill="#f39c12"/>
+                <!-- Dove beak -->
+                <path d="M14 32l4 1-4 1z" fill="#e67e22"/>
+                <!-- Dove eye -->
+                <circle cx="20" cy="30" r="1" fill="#fff"/>
+                <!-- Olive branch leaf 1 -->
+                <ellipse cx="44" cy="22" rx="4" ry="2" transform="rotate(-30 44 22)" fill="#5a9367"/>
+                <!-- Olive branch leaf 2 -->
+                <ellipse cx="48" cy="26" rx="3.5" ry="1.8" transform="rotate(20 48 26)" fill="#5a9367"/>
+                <!-- Olive branch stem -->
+                <path d="M40 28 L50 22" stroke="#5a9367" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <h3 class="itinerary-heading" id="itineraryHeading">God Bless You!</h3>
+            <p class="itinerary-message">Thank you so much for your eagerness! The itinerary and schedule will be uploaded right before the conference accordingly.</p>
+            <p class="itinerary-message" style="margin-bottom: 0.5rem;"><strong>Have a blessed day.</strong></p>
+            <button type="button" class="itinerary-btn-close" id="itineraryPopupOk">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12l5 5L20 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Amen
+            </button>
+            <span class="itinerary-hint">Press ESC or click outside to close</span>
         </div>
     </div>
 
@@ -1164,28 +1469,73 @@
             </div>
 
             <div class="about-grid">
+                <!-- PRAYING HANDS -->
                 <div class="about-card fade-in">
-                    <svg class="animated-svg anim-pulse" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
+                    <div class="about-icon-wrap">
+                        <svg class="about-icon icon-pray" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left hand -->
+                            <path d="M26 58 L22 58 Q18 58 18 54 L18 32 Q18 28 22 26 L22 16 Q22 12 26 12 Q30 12 30 16 L30 28 L30 52 Q30 58 26 58 Z"/>
+                            <!-- Right hand -->
+                            <path d="M38 58 L42 58 Q46 58 46 54 L46 32 Q46 28 42 26 L42 16 Q42 12 38 12 Q34 12 34 16 L34 28 L34 52 Q34 58 38 58 Z"/>
+                            <!-- Finger detail lines left -->
+                            <path d="M22 28 L22 20 M26 28 L26 18" stroke="#0a0a0a" stroke-width="0.8" fill="none" opacity="0.25"/>
+                            <!-- Finger detail lines right -->
+                            <path d="M42 28 L42 20 M38 28 L38 18" stroke="#0a0a0a" stroke-width="0.8" fill="none" opacity="0.25"/>
+                            <!-- Glowing light above hands -->
+                            <circle cx="32" cy="8" r="3" opacity="0.6"/>
+                            <circle cx="32" cy="8" r="6" opacity="0.25"/>
+                        </svg>
+                    </div>
                     <h4>Our Mission</h4>
-                    <p>We are passionate about loving God and loving people. It is the foundation of our faith. <em>"Love the Lord your God with all your heart... and your neighbor as yourself."</em> (Matthew 22:37-39)</p>
+                    <p>We are passionate about loving God and loving people. It is the foundation of our faith. "Love the Lord your God with all your heart... and your neighbor as yourself." (Matthew 22:37-39)</p>
                 </div>
 
+                <!-- FAMILY -->
                 <div class="about-card fade-in">
-                    <svg class="animated-svg anim-float" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                    </svg>
+                    <div class="about-icon-wrap">
+                        <svg class="about-icon icon-family" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Dad (left, tall) -->
+                            <circle cx="16" cy="18" r="6"/>
+                            <path d="M8 48 Q8 32 16 32 Q24 32 24 48 L24 54 L8 54 Z"/>
+                            <!-- Mom (right, medium) -->
+                            <circle cx="48" cy="20" r="5.5"/>
+                            <path d="M40 48 Q40 34 48 34 Q56 34 56 48 L56 54 L40 54 Z"/>
+                            <!-- Child (center, small) -->
+                            <circle cx="32" cy="28" r="4"/>
+                            <path d="M27 48 Q27 38 32 38 Q37 38 37 48 L37 54 L27 54 Z"/>
+                            <!-- Connecting heart above -->
+                            <path d="M32 12 L30 9 Q28 7 28 10 Q28 13 32 15 Q36 13 36 10 Q36 7 34 9 Z" opacity="0.7"/>
+                        </svg>
+                    </div>
                     <h4>Indian Christian Community</h4>
-                    <p>Our worship flows in multiple languages: Malayalam, English, Tamil, German, Hindi, and more—beautifully reflecting our Kerala Pentecostal heritage and Indian Christian traditions in Germany.</p>
+                    <p>Our worship flows in multiple languages: Malayalam, English, Tamil, German, Hindi, and more — reflecting our Kerala Pentecostal heritage and Indian Christian traditions in Germany.</p>
                 </div>
 
+                <!-- DOVE WITH OLIVE BRANCH -->
                 <div class="about-card fade-in">
-                    <svg class="animated-svg anim-flicker" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.71 1.05C11.37.89 10.96 1.1 10.92 1.48 10.53 4.88 8.8 6.54 7.23 8.35 5.75 10.06 4 11.95 4 15c0 4.41 3.59 8 8 8s8-3.59 8-8c0-3.05-1.75-4.94-3.23-6.65-1.57-1.81-3.3-3.47-3.69-6.87-.04-.38-.45-.59-.79-.43L11.71 1.05zM12 19c-2.21 0-4-1.79-4-4 0-2.5 1.5-4 2.5-4.5.49-.24.89-.5.89-.92 0-.25-.13-.48-.35-.59-.26-.14-.57-.1-.77.12-.13.14-.3.21-.49.19-.24-.03-.43-.19-.51-.41-.05-.15-.02-.32.08-.45.92-1.18 2.22-1.92 3.63-2 1.83-.11 3.63 1.14 4.19 2.92.17.55.22 1.14.15 1.73-.13 1.17-.74 2.2-1.68 2.9-.31.23-.48.62-.43 1 .06.46.3.87.69 1.13.25.17.41.45.41.76 0 2.21-1.79 4-4 4z"/>
-                    </svg>
+                    <div class="about-icon-wrap">
+                        <svg class="about-icon icon-dove" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Dove body -->
+                            <path d="M18 36 Q14 33 14 28 Q14 22 20 20 Q24 19 28 22 Q30 19 34 19 Q42 19 46 26 Q48 30 46 34 L42 36 Q42 42 36 44 L24 44 Q18 44 18 38 Z"/>
+                            <!-- Wing detail (lighter lines) -->
+                            <path d="M28 28 Q32 32 40 30" stroke="#0a0a0a" stroke-width="0.8" fill="none" opacity="0.3"/>
+                            <path d="M26 33 Q32 36 40 34" stroke="#0a0a0a" stroke-width="0.8" fill="none" opacity="0.3"/>
+                            <!-- Beak -->
+                            <path d="M13 28 L10 29 L13 30 Z"/>
+                            <!-- Eye -->
+                            <circle cx="18" cy="27" r="0.8" fill="#0a0a0a"/>
+                            <!-- Olive branch stem -->
+                            <path d="M30 44 Q32 52 34 58" stroke="#5a9367" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            <!-- Olive leaf 1 -->
+                            <ellipse cx="31" cy="48" rx="2.5" ry="1.2" transform="rotate(-35 31 48)" fill="#5a9367"/>
+                            <!-- Olive leaf 2 -->
+                            <ellipse cx="33.5" cy="52" rx="2.5" ry="1.2" transform="rotate(30 33.5 52)" fill="#5a9367"/>
+                            <!-- Olive leaf 3 -->
+                            <ellipse cx="34" cy="56" rx="2.2" ry="1.1" transform="rotate(-25 34 56)" fill="#5a9367"/>
+                        </svg>
+                    </div>
                     <h4>Revival & Growth</h4>
-                    <p>Young lives are being transformed daily—experiencing healing, water baptism, and the baptism of the Holy Ghost. Our connection stretches across Germany, Sweden, Lithuania, and Europe.</p>
+                    <p>Young lives are being transformed daily — experiencing healing, water baptism, and the baptism of the Holy Ghost. Our connection stretches across Germany, Sweden, Lithuania, and Europe.</p>
                 </div>
             </div>
 
@@ -1194,7 +1544,7 @@
             </div>
 
             <div class="about-outro fade-in">
-                <p>We offer dynamic weekly fellowships, Malayalam worship services, Bible studies, prayer meetings, youth conferences, camps, and mentorships. We warmly invite you—whether you're looking for a Malayalam prayer group in Germany or just exploring faith—to come and experience the fresh fire of Pentecost.</p>
+                <p>We offer dynamic weekly fellowships, Malayalam worship services, Bible studies, prayer meetings, youth conferences, camps, and mentorships. We warmly invite you — whether you're looking for a Malayalam prayer group in Germany or just exploring faith — to come and experience the fresh fire of Pentecost.</p>
                 <p style="margin-top: 1rem;"><strong>Experience His Glory. Enter His Presence. Receive His Love!</strong> 🔥</p>
             </div>
         </div>
@@ -1395,12 +1745,13 @@
                         <p>We are planning accommodation (hotels/hostels) for those who need it. To help us book the right number of rooms, please only register if you truly plan to attend.</p>
                         <div class="conf-note">⚠️ Please make sure that if you sign up, you actually plan to come, because we are trying to book hotels or hostels for those who need accommodation.</div>
 
-                        <a href="itinerary.pdf" target="_blank" class="itinerary-btn" id="itineraryBtn">
+                        <!-- CHANGED: now a <button> that opens popup instead of linking -->
+                        <button type="button" class="itinerary-btn" id="itineraryBtn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z"/>
                             </svg>
                             View Conference Itinerary
-                        </a>
+                        </button>
                     </div>
                     <div class="conference-news-right">
                         <h4 style="font-size:clamp(1.1rem,2.5vw,1.3rem);margin-bottom:1.5rem;font-weight:700;">📋 Conference Schedule</h4>
@@ -1536,7 +1887,7 @@
 
     <script>
         // =====================================================
-        // WELCOME OVERLAY — show only on first visit per session
+        // WELCOME OVERLAY — first visit per session only
         // =====================================================
         (function() {
             const welcomeOverlay = document.getElementById('welcomeOverlay');
@@ -1544,14 +1895,10 @@
             const welcomeCTA = document.getElementById('welcomeCTA');
             const itineraryBtn = document.getElementById('itineraryBtn');
 
-            // Check sessionStorage — it clears when the tab/browser closes,
-            // but survives page navigation within the same session.
-            // Reloads keep the same session, so the overlay won't re-appear on reload.
             let hasSeenWelcome = false;
             try {
                 hasSeenWelcome = sessionStorage.getItem('byu_welcome_seen') === 'true';
             } catch (e) {
-                // sessionStorage may be blocked (private mode, etc.) — fall back to showing once per page load
                 hasSeenWelcome = window.__byuWelcomeSeen === true;
             }
 
@@ -1559,10 +1906,7 @@
                 welcomeOverlay.classList.remove('visible');
                 document.body.classList.remove('welcome-active');
                 try { sessionStorage.setItem('byu_welcome_seen', 'true'); } catch (e) { window.__byuWelcomeSeen = true; }
-                // Allow clicks through after fade completes
-                setTimeout(() => {
-                    welcomeOverlay.style.display = 'none';
-                }, 700);
+                setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 700);
             }
 
             function showWelcome() {
@@ -1571,28 +1915,21 @@
             }
 
             if (!hasSeenWelcome) {
-                // Wait 2 seconds after page load
                 setTimeout(showWelcome, 2000);
             } else {
                 welcomeOverlay.style.display = 'none';
             }
 
-            // Close button
             welcomeClose.addEventListener('click', closeWelcome);
+            welcomeOverlay.addEventListener('click', (e) => { if (e.target === welcomeOverlay) closeWelcome(); });
 
-            // Click outside the card to close
-            welcomeOverlay.addEventListener('click', (e) => {
-                if (e.target === welcomeOverlay) closeWelcome();
-            });
-
-            // ESC key to close
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && welcomeOverlay.classList.contains('visible')) {
                     closeWelcome();
                 }
             });
 
-            // CTA button → close overlay, scroll to itinerary button, flash-highlight it
+            // CTA button → close welcome, scroll to itinerary button, flash-highlight
             welcomeCTA.addEventListener('click', () => {
                 closeWelcome();
                 setTimeout(() => {
@@ -1607,6 +1944,46 @@
                         setTimeout(() => itineraryBtn.classList.remove('flash-highlight'), 4000);
                     }
                 }, 500);
+            });
+        })();
+
+        // =====================================================
+        // ITINERARY POPUP — "View Conference Itinerary" button
+        // =====================================================
+        (function() {
+            const itineraryBtn = document.getElementById('itineraryBtn');
+            const popup = document.getElementById('itineraryPopup');
+            const popupClose = document.getElementById('itineraryPopupClose');
+            const popupOk = document.getElementById('itineraryPopupOk');
+
+            function openPopup() {
+                document.body.classList.add('popup-active');
+                popup.style.display = 'flex';
+                // Force reflow then add visible class for transition
+                void popup.offsetWidth;
+                popup.classList.add('visible');
+            }
+
+            function closePopup() {
+                popup.classList.remove('visible');
+                document.body.classList.remove('popup-active');
+                setTimeout(() => { popup.style.display = 'none'; }, 500);
+            }
+
+            if (itineraryBtn) {
+                itineraryBtn.addEventListener('click', openPopup);
+            }
+            popupClose.addEventListener('click', closePopup);
+            popupOk.addEventListener('click', closePopup);
+
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) closePopup();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && popup.classList.contains('visible')) {
+                    closePopup();
+                }
             });
         })();
 
@@ -1696,7 +2073,6 @@
             else if (e.key === 'ArrowRight') { nextSlide(); stopAutoPlay(); startAutoPlay(); }
         });
 
-        // FIXED touch events (was broken in previous version: e.changedTouches needs [0])
         let touchStartX = 0, touchEndX = 0;
         carouselSection.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
@@ -1779,7 +2155,6 @@
             if (e.key === 'ArrowRight') goToLightbox(currentLightbox + 1);
         });
 
-        // FIXED touch events for lightbox (same bug as carousel had)
         let lbTouchStartX = 0;
         lightbox.addEventListener('touchstart', (e) => { lbTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
         lightbox.addEventListener('touchend', (e) => {
@@ -1795,9 +2170,7 @@
             resizeTimer = setTimeout(() => { if (window.innerWidth > 900) navLinks.classList.remove('active'); }, 250);
         });
 
-        // =====================================================
-        // SCROLL — FIXED: parallax removed to prevent overlap
-        // =====================================================
+        // SCROLL
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
@@ -1811,11 +2184,6 @@
                         link.classList.remove('active');
                         if (link.getAttribute('href').slice(1) === current) link.classList.add('active');
                     });
-
-                    // Parallax removed: the `transform: translateY` on .hero-content
-                    // and .hero-logo was causing the logo circle to visually extend
-                    // down into the carousel section. Without it, the hero stays put
-                    // and the carousel sits cleanly below.
 
                     ticking = false;
                 });
